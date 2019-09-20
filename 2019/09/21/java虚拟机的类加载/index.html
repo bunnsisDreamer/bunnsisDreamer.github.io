@@ -57,14 +57,18 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="金清老贼的博客">
-<meta property="og:url" content="https://bunnsisdreamer.github.io/archives/2019/index.html">
+  <meta name="description" content="#Java虚拟机的类加载的过程（这应该是第一篇的才对）虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java虚拟机的类加载">
+<meta property="og:url" content="https://bunnsisdreamer.github.io/2019/09/21/java虚拟机的类加载/index.html">
 <meta property="og:site_name" content="金清老贼的博客">
+<meta property="og:description" content="#Java虚拟机的类加载的过程（这应该是第一篇的才对）虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-20T16:50:41.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="金清老贼的博客">
-  <link rel="canonical" href="https://bunnsisdreamer.github.io/archives/2019/">
+<meta name="twitter:title" content="java虚拟机的类加载">
+<meta name="twitter:description" content="#Java虚拟机的类加载的过程（这应该是第一篇的才对）虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。">
+  <link rel="canonical" href="https://bunnsisdreamer.github.io/2019/09/21/java虚拟机的类加载/">
 
 
 <script id="page-configurations">
@@ -72,13 +76,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | 金清老贼的博客</title>
+  <title>java虚拟机的类加载 | 金清老贼的博客</title>
   
 
 
@@ -202,24 +206,6 @@
 
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 </nav>
   <div class="site-search">
     
@@ -251,169 +237,131 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content page-archive">
+          <div id="content" class="content page-post-detail">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 4 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-  
-  
-  
-
-  
+  <div id="posts" class="posts-expand">
     
-    <div class="collection-title">
-      <h1 class="archive-year" id="archive-year-2019">2019</h1>
-    </div>
-  
-  
 
   <article class="post" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/21/java虚拟机的类加载/" itemprop="url">
-            <span itemprop="name">java虚拟机的类加载</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-21T00:40:57+08:00"
-              content="2019-09-21">
-          09-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
   
   
   
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/09/21/java虚拟机的类加载/">
 
-  
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王 增益">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1566049148502.gif">
+    </span>
 
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金清老贼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">java虚拟机的类加载
 
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/20/java学习的反射（终究会来的学习记录）/" itemprop="url">
-            <span itemprop="name">java学习的反射（终究会来的学习记录）</span>
-          </a>
-        
-      </h2>
+          
+        </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-20T23:56:29+08:00"
-              content="2019-09-20">
-          09-20
-        </time>
-      </div>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-    </header>
-  </article>
+              
+                
+              
 
+              <time title="创建时间：2019-09-21 00:40:57 / 修改时间：00:50:41" itemprop="dateCreated datePublished" datetime="2019-09-21T00:40:57+08:00">2019-09-21</time>
+            </span>
+          
+            
 
+            
+          
 
-  
-  
-  
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
-  
-  
+        </div>
+      </header>
 
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/29/柯人有了男朋友/" itemprop="url">
-            <span itemprop="name">It's just humiliating love</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-08-29T00:58:10+08:00"
-              content="2019-08-29">
-          08-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-  
-
-  
-  
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/17/呐喊/" itemprop="url">
-            <span itemprop="name">前序</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-08-17T22:14:39+08:00"
-              content="2019-08-17">
-          08-17
-        </time>
-      </div>
-
-    </header>
-  </article>
+      
+        <p>#Java虚拟机的类加载的过程（这应该是第一篇的才对）</p><h3 id="虚拟机的类加载机制"><a href="#虚拟机的类加载机制" class="headerlink" title="虚拟机的类加载机制"></a>虚拟机的类加载机制</h3><p>虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。</p><p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。</p><a id="more"></a>
 
 
-
+<p>当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初始化。</p>
+<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>加载就是虚拟机查找.class，并创建一个java.lang.Class的对象，将类的.class文件中的二进制数据读入内存，放在运行时区域的方法区内。然后在堆中创建 java.lang.Class 对象，用来封装类在方法区的数据结构。 </p>
+<p>（1）Java虚拟机将.class文件读入内存，并为之创建一个Class对象。 （2）任何类被使用时系统都会为其创建一个且仅有一个Class对象。<br>（3）这个Class对象描述了这个类创建出来的对象的所有信息</p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接包括验证、准备以及解析三个阶段。<br>（1）验证阶段。主要的目的是确保被加载的类（.class文件的字节流）满足Java虚拟机规范，不 会造成安全错误。 （2）准备阶段。负责为类的静态成员分配内存，并设置默认初始值。 （3）解析阶段。将类的二进制数据中的符号引用替换为直接引用。 </p>
+<p>说明：</p>
+<hr>
+<p>符号引用。即一个字符串，但是这个字符串给出了一些能够唯一性识别一个方法，一个变 量，一个类的相关信息。<br>直接引用。可以理解为一个内存地址，或者一个偏移量。比如类方法，类变量的直接引用 是指向方法区的指针；<br>而实例方法，实例变量的直接引用则是从实例的头指针开始算起到这个实例变量位置的偏 移量。<br>举个例子，现在调用方法hello()，这个方法的地址是0xaabbccdd，那么hello就是符号引用， 0xaabbccdd就是直接引用。<br>在解析阶段，虚拟机会把所有的类名，方法名，字段名这些符号引用替换为具体的内存地 址或偏移量，也就是直接引用。</p>
+<hr>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>初始化，则是为标记为常量值的字段赋值的过程。换句话说，只对static修饰的变量或语句块进行初始 化。<br>如果初始化一个类的时候，其父类尚未初始化，则优先初始化其父类。<br>如果同时包含多个静态变量和静态代码块，则按照自上而下的顺序依次执行。</p>
+<h3 id="怎么说呢"><a href="#怎么说呢" class="headerlink" title="怎么说呢"></a>怎么说呢</h3><p>类加载只是一个类的生命周期的一部分。先编译才能有class文件<br>使用后还会有垃圾回收</p>
+<h3 id="在自己的项目里新建一个java-lang包，里面新建了一个String类，能代替系统String吗"><a href="#在自己的项目里新建一个java-lang包，里面新建了一个String类，能代替系统String吗" class="headerlink" title="在自己的项目里新建一个java.lang包，里面新建了一个String类，能代替系统String吗"></a>在自己的项目里新建一个java.lang包，里面新建了一个String类，能代替系统String吗</h3><p>不能，因为根据类加载的双亲委派机制，会将请求转发给父类加载器，父类加载器发现冲 突了String就不会加载了。</p>
 
     </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/20/java学习的反射（终究会来的学习记录）/" rel="next" title="java学习的反射（终究会来的学习记录）">
+                  <i class="fa fa-chevron-left"></i> java学习的反射（终究会来的学习记录）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
   </div>
   
   
   
+  </article>
 
-  
-
+  </div>
 
 
           </div>
           
+    
+    <div class="comments" id="gitalk-container"></div>
+  
 
         </div>
           
@@ -428,8 +376,17 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -493,6 +450,23 @@
 
         </div>
       </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机的类加载机制"><span class="nav-number">1.</span> <span class="nav-text">虚拟机的类加载机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载"><span class="nav-number">2.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接"><span class="nav-number">3.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">4.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么说呢"><span class="nav-number">5.</span> <span class="nav-text">怎么说呢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在自己的项目里新建一个java-lang包，里面新建了一个String类，能代替系统String吗"><span class="nav-number">6.</span> <span class="nav-text">在自己的项目里新建一个java.lang包，里面新建了一个String类，能代替系统String吗</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
     </div>
   </aside>
@@ -613,6 +587,27 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.3.0"></script><script src="/js/post-details.js?v=7.3.0"></script>
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '9846730fad395e384b60',
+      clientSecret: '0a12ac29d217aaa7932442da3f476c682db536fb',
+      repo: 'bunnsisDreamerer',
+      owner: 'bunnsisDreamer',
+      admin: ['bunnsisDreamer'],
+      id: 'c35e458e22a29088863c531a76e8dbb1',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
 
 </body>
 </html>
