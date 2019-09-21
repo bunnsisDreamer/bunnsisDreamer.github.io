@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="自定义注解首先注解是什么Java注解又称Java标注，是Java语言5.0版本开始支持加入源代码的特殊语法元数据。为我们在代 码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便的使用这些数据。 Java语言中的类、方法、变量、参数和包等都可以被标注。和Javadoc不同，Java标注可以通过反 射获取注解内容。在编译器生成类文件时，注解可以被嵌入到字节码中。Java虚拟机可以保留">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java的自定义注解">
+<meta property="og:url" content="https://bunnsisdreamer.github.io/2019/09/21/java的自定义注解/index.html">
+<meta property="og:site_name" content="金清老贼的博客">
+<meta property="og:description" content="自定义注解首先注解是什么Java注解又称Java标注，是Java语言5.0版本开始支持加入源代码的特殊语法元数据。为我们在代 码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便的使用这些数据。 Java语言中的类、方法、变量、参数和包等都可以被标注。和Javadoc不同，Java标注可以通过反 射获取注解内容。在编译器生成类文件时，注解可以被嵌入到字节码中。Java虚拟机可以保留">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-21T08:19:03.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java的自定义注解">
+<meta name="twitter:description" content="自定义注解首先注解是什么Java注解又称Java标注，是Java语言5.0版本开始支持加入源代码的特殊语法元数据。为我们在代 码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便的使用这些数据。 Java语言中的类、方法、变量、参数和包等都可以被标注。和Javadoc不同，Java标注可以通过反 射获取注解内容。在编译器生成类文件时，注解可以被嵌入到字节码中。Java虚拟机可以保留">
+  <link rel="canonical" href="https://bunnsisdreamer.github.io/2019/09/21/java的自定义注解/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>java的自定义注解 | 金清老贼的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+<a href="https://github.com/bunnsisDreamer" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">金清老贼的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+</nav>
+  <div class="site-search">
+    
+  <div class="popup search-popup">
+  <div class="search-header">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <div class="search-input-wrapper">
+      <input autocomplete="off" autocorrect="off" autocapitalize="none"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="search-input">
+    </div>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+  <div id="search-result"></div>
+</div>
+
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/09/21/java的自定义注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王 增益">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1566049148502.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金清老贼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">java的自定义注解
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-21 14:55:25 / 修改时间：16:19:03" itemprop="dateCreated datePublished" datetime="2019-09-21T14:55:25+08:00">2019-09-21</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h1><h5 id="首先注解是什么"><a href="#首先注解是什么" class="headerlink" title="首先注解是什么"></a>首先注解是什么</h5><p>Java注解又称Java标注，是Java语言5.0版本开始支持加入源代码的特殊语法元数据。为我们在代 码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便的使用这些数据。 Java语言中的类、方法、变量、参数和包等都可以被标注。和Javadoc不同，Java标注可以通过反 射获取注解内容。在编译器生成类文件时，注解可以被嵌入到字节码中。Java虚拟机可以保留注 解内容，在运行时可以获取到注解内容。（看不看一样，知道就是了）</p><a id="more"></a>
+<h3 id="不是自定义的java的内置注解"><a href="#不是自定义的java的内置注解" class="headerlink" title="不是自定义的java的内置注解"></a>不是自定义的java的内置注解</h3><p>@Override - 检查该方法是否是重写方法。如果发现其父类，或者是引用的接口中并没有 该方法时，会报编译错误。<br>@Deprecated - 标记过时方法。如果使用该方法，会报编译警告。 @SuppressWarnings - 指示编译器去忽略注解中声明的警告。 </p>
+<ol start="2">
+<li>从 Java 7 开始，额外添加了 3 个注解:<br>@SafeVarargs - Java 7 开始支持，忽略任何使用参数为泛型变量的方法或构造函数调用产 生的警告。 @FunctionalInterface - Java 8 开始支持，标识一个匿名函数或函数式接口。<br>@Repeatable - Java 8 开始支持，标识某注解可以在同一个声明上使用多次。</li>
+</ol>
+<hr>
+<p>源码注解 注解只在源码中存在，编译.class文件之后就不存在了<br>编译时注解 在源文件和.class文件中都会存在，eg：@Override<br>运行时注解 在运行阶段起作用，甚至影响程序的运行逻辑，eg：@Autowired</p>
+<hr>
+<h3 id="这里是真正的自定义注解"><a href="#这里是真正的自定义注解" class="headerlink" title="这里是真正的自定义注解"></a>这里是真正的自定义注解</h3><p>定义注解类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public @interface MyService&#123;</span><br><span class="line">	//@interface声明注解</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注解的注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.METHOD, ElementType.TYPE&#125;) </span><br><span class="line">@Retention(RetentionPolicy.RUNTIME) </span><br><span class="line">@Inherited </span><br><span class="line">@Documented</span><br></pre></td></tr></table></figure>
+
+<p>元注解（注解的注解）<br>@Target<br>作用域<br>    Construtor：构造方法<br>    Field：字段声明<br>    Type：类或接口<br>    Local_Variable：局部变量<br>    Method：方法<br>    Package：包声明<br>    Parameter：参数声明<br>@Retention<br>声明周期<br>    Source：只在源码显示，编译时会丢弃 Class：编译时记录到class中，运行时忽略 Runtime：运行时存在，可以在运行时利用反射读取<br>@Inherited<br>允许子类继承<br>@Documented<br>生成javadoc时，会包含注解 </p>
+<h3 id="定义注解内容"><a href="#定义注解内容" class="headerlink" title="定义注解内容"></a>定义注解内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.METHOD, ElementType.TYPE&#125;) </span><br><span class="line">@Retention(RetentionPolicy.RUNTIME) </span><br><span class="line">@Inherited @Documented public </span><br><span class="line">@interface MyController &#123; // @interface 声明注解  </span><br><span class="line">	// 注解的成员规则：必须声明无参数无异常  </span><br><span class="line">	String url();  </span><br><span class="line">	String email();  </span><br><span class="line">	// 可以使用default给成员默认值  </span><br><span class="line">	int age() default 20;    </span><br><span class="line">	// 成员的类型有限定：  //    合法的类型包括：基本类型、String、Class、Annotation、Enumeration</span><br><span class="line"></span><br><span class="line">	// 如果注解只有一个成员，则成员必须取名value()，在使用的时候可以忽略成员名和赋值符 (=)</span><br></pre></td></tr></table></figure>
+
+<h3 id="一个小demo"><a href="#一个小demo" class="headerlink" title="一个小demo"></a>一个小demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@MyController(url = &quot;baidu.com&quot;, email = &quot;123@qq.com&quot;, age = 10) public class TestAnno &#123;</span><br><span class="line"> </span><br><span class="line">    @MyController(age = 22)</span><br><span class="line">     private int age;</span><br><span class="line"> </span><br><span class="line">    @MyController(val = &quot;123456&quot;)</span><br><span class="line">     private String password;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    public int getAge() &#123;        return age;    &#125;</span><br><span class="line"> </span><br><span class="line">    public void setAge(int age) &#123;        this.age = age;    &#125;</span><br><span class="line"> </span><br><span class="line">    public String getPassword() &#123;        return password;    &#125;</span><br><span class="line"> </span><br><span class="line">    public void setPassword(String password) &#123;        this.password = password;    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取注解类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class ParseAnno &#123;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) throws Exception &#123;        </span><br><span class="line"> 	// 解析注解</span><br><span class="line">    Class&lt;?&gt; annoClazz = Class.forName(&quot;XXX.TestAnno&quot;);</span><br><span class="line"> </span><br><span class="line">    // 判断类 注解是否存在</span><br><span class="line">    boolean exist = annoClazz.isAnnotationPresent(MyController.class);</span><br><span class="line"></span><br><span class="line">    if (exist) &#123; </span><br><span class="line"> 	// 存在</span><br><span class="line"> </span><br><span class="line">    // 获取注解       </span><br><span class="line">    MyController classAnno = annoClazz.getAnnotation(MyController.class);</span><br><span class="line"> </span><br><span class="line">    // 打印注解值    </span><br><span class="line">    System.out.println(classAnno.email());       </span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">    // 获取类中成员变量的注解    </span><br><span class="line">    Field[] fields = annoClazz.getDeclaredFields(); // 获取类中所有 的成员变量</span><br><span class="line"> </span><br><span class="line">    for (Field f : fields) &#123;     </span><br><span class="line">    // 判断成员变量，注解是否存在      </span><br><span class="line">    boolean fieldExist = f.isAnnotationPresent(MyController.class);</span><br><span class="line"> </span><br><span class="line">    if (fieldExist) &#123;</span><br><span class="line"> </span><br><span class="line">     // 获取注解           </span><br><span class="line">     MyController fieldAnno = f.getAnnotation(MyController.class);</span><br><span class="line"> </span><br><span class="line">     // 输出成员变量注解的值           </span><br><span class="line">     System.out.println(&quot;age = &quot; + fieldAnno.age());          </span><br><span class="line">     System.out.println(&quot;val = &quot; + fieldAnno.val());        </span><br><span class="line">     &#125;      </span><br><span class="line">   	&#125;   </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="几点回忆得起的有的没得"><a href="#几点回忆得起的有的没得" class="headerlink" title="几点回忆得起的有的没得"></a>几点回忆得起的有的没得</h3><p>一般都是 运行时候的注解<br>@Override就是个标识注解，没什么用就给你看看，知道这是继承。</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/21/java虚拟机的类加载/" rel="next" title="java虚拟机的类加载">
+                  <i class="fa fa-chevron-left"></i> java虚拟机的类加载
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/1566049148502.gif"
+      alt="王 增益">
+  <p class="site-author-name" itemprop="name">王 增益</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+        
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/bunnsisDreamer" title="GitHub &rarr; https://github.com/bunnsisDreamer" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/u/5896708656" title="Weibo &rarr; https://weibo.com/u/5896708656" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+  </div>
+
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义注解"><span class="nav-number">1.</span> <span class="nav-text">自定义注解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#首先注解是什么"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">首先注解是什么</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不是自定义的java的内置注解"><span class="nav-number">1.0.1.</span> <span class="nav-text">不是自定义的java的内置注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这里是真正的自定义注解"><span class="nav-number">1.0.2.</span> <span class="nav-text">这里是真正的自定义注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义注解内容"><span class="nav-number">1.0.3.</span> <span class="nav-text">定义注解内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个小demo"><span class="nav-number">1.0.4.</span> <span class="nav-text">一个小demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几点回忆得起的有的没得"><span class="nav-number">1.0.5.</span> <span class="nav-text">几点回忆得起的有的没得</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王 增益</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.3.0</div> -->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+
+<script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script><script src="/js/post-details.js?v=7.3.0"></script>
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '9846730fad395e384b60',
+      clientSecret: '0a12ac29d217aaa7932442da3f476c682db536fb',
+      repo: 'bunnsisDreamerer',
+      owner: 'bunnsisDreamer',
+      admin: ['bunnsisDreamer'],
+      id: 'b260b53fea83d72bb143e5282bdd360c',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+</body>
+</html>
