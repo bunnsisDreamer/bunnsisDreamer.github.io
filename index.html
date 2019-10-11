@@ -243,6 +243,89 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/10/11/java的懒加载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王 增益">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1566049148502.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金清老贼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/10/11/java的懒加载/" class="post-title-link" itemprop="url">java的懒加载</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-11 23:27:53 / 修改时间：23:35:50" itemprop="dateCreated datePublished" datetime="2019-10-11T23:27:53+08:00">2019-10-11</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="懒加载（延迟加载）"><a href="#懒加载（延迟加载）" class="headerlink" title="懒加载（延迟加载）"></a>懒加载（延迟加载）</h1><p>懒加载FatchType.LAZY也称为延迟加载，是Hibernate3关联关系对象默认的加载方式，所谓懒加载就是当在真正需要数据的时候，才真正执行数据加载操作。简单理解为，只有在使用的时候，才会发出sql语句进行查询。<br>懒加载的有效期是在session打开的情况下，当session关闭后，会报异常。当调用load方法加载对象时，返回代理对象，等到真正用到对象的内容时才发出sql语句。<br>急加载FatchType.EAGER 也成为立即加载，时立即执行sql语句。<br>在session没有关闭的之前，如果访问除id外的其他属性才会发sql语句去查询，我们经常犯的一个错误就是在当前session关闭以后访问由load（）加载的对象的非id属性，<br>此时Hibernate尝试通过当前session发sql查询，但发现session已经关闭，这样就会发出no session的异常 。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/10/11/java的懒加载/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/10/08/Journey-to-Chengdu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -787,7 +870,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
