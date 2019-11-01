@@ -57,17 +57,17 @@
   };
 </script>
 
-  <meta name="description" content="子类获取父类的父类的属性和方法问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。我寻思了一下有三种。1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。12345678910111213141516171819class Grandfather&amp;#123;    S">
+  <meta name="description" content="问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。我寻思了一下有三种。1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。12345678910111213141516171819class Grandfather&amp;#123;    String a = &amp;quot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="子类获取父类的父类的属性和方法">
 <meta property="og:url" content="https://bunnsisdreamer.github.io/2019/11/01/java子类获取父类的父类的属性和方法/index.html">
 <meta property="og:site_name" content="金清老贼的博客">
-<meta property="og:description" content="子类获取父类的父类的属性和方法问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。我寻思了一下有三种。1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。12345678910111213141516171819class Grandfather&amp;#123;    S">
+<meta property="og:description" content="问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。我寻思了一下有三种。1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。12345678910111213141516171819class Grandfather&amp;#123;    String a = &amp;quot">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-01T13:51:07.351Z">
+<meta property="og:updated_time" content="2019-11-01T13:53:27.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="子类获取父类的父类的属性和方法">
-<meta name="twitter:description" content="子类获取父类的父类的属性和方法问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。我寻思了一下有三种。1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。12345678910111213141516171819class Grandfather&amp;#123;    S">
+<meta name="twitter:description" content="问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。我寻思了一下有三种。1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。12345678910111213141516171819class Grandfather&amp;#123;    String a = &amp;quot">
   <link rel="canonical" href="https://bunnsisdreamer.github.io/2019/11/01/java子类获取父类的父类的属性和方法/">
 
 
@@ -276,7 +276,7 @@
                 
               
 
-              <time title="创建时间：2019-11-01 21:41:27 / 修改时间：21:51:07" itemprop="dateCreated datePublished" datetime="2019-11-01T21:41:27+08:00">2019-11-01</time>
+              <time title="创建时间：2019-11-01 21:41:27 / 修改时间：21:53:27" itemprop="dateCreated datePublished" datetime="2019-11-01T21:41:27+08:00">2019-11-01</time>
             </span>
           
             
@@ -303,7 +303,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="子类获取父类的父类的属性和方法"><a href="#子类获取父类的父类的属性和方法" class="headerlink" title="子类获取父类的父类的属性和方法"></a>子类获取父类的父类的属性和方法</h1><p>问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。<br>我寻思了一下有三种。</p><h3 id="1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。"><a href="#1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。" class="headerlink" title="1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。"></a>1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Grandfather&#123;</span><br><span class="line">    String a = &quot;爷爷&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Father extends Grandfather&#123;</span><br><span class="line">    String a = &quot;爸爸&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Son extends Father&#123;</span><br><span class="line">    String a = &quot;孙子&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.getGrandfatherName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+        <p>问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。<br>我寻思了一下有三种。</p><h3 id="1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。"><a href="#1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。" class="headerlink" title="1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。"></a>1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Grandfather&#123;</span><br><span class="line">    String a = &quot;爷爷&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Father extends Grandfather&#123;</span><br><span class="line">    String a = &quot;爸爸&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Son extends Father&#123;</span><br><span class="line">    String a = &quot;孙子&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.getGrandfatherName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
 <h3 id="2-利用反射的特性，利用类方法直接获取。"><a href="#2-利用反射的特性，利用类方法直接获取。" class="headerlink" title="2.利用反射的特性，利用类方法直接获取。"></a>2.利用反射的特性，利用类方法直接获取。</h3><p>这种和子不子类，继承不继承无关。<br>也不能这么说，假设我只是知道我是继承的父类，然后可以知道我父类继承的爷爷类，一直到太爷爷类都可以。类方法取出。</p>
@@ -460,7 +460,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#子类获取父类的父类的属性和方法"><span class="nav-number">1.</span> <span class="nav-text">子类获取父类的父类的属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-利用反射的特性，利用类方法直接获取。"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.利用反射的特性，利用类方法直接获取。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-可以用虚拟机级别的invokeddynamic实现（基于java1-7版本以及以上才可以）"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.可以用虚拟机级别的invokeddynamic实现（基于java1.7版本以及以上才可以）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#以下cv"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">以下cv</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。"><span class="nav-number">1.</span> <span class="nav-text">1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-利用反射的特性，利用类方法直接获取。"><span class="nav-number">2.</span> <span class="nav-text">2.利用反射的特性，利用类方法直接获取。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-可以用虚拟机级别的invokeddynamic实现（基于java1-7版本以及以上才可以）"><span class="nav-number">3.</span> <span class="nav-text">3.可以用虚拟机级别的invokeddynamic实现（基于java1.7版本以及以上才可以）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#以下cv"><span class="nav-number">3.1.</span> <span class="nav-text">以下cv</span></a></li></ol></li></ol></div>
             
 
           </div>

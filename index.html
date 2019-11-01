@@ -272,7 +272,7 @@
                 
               
 
-              <time title="创建时间：2019-11-01 21:41:27 / 修改时间：21:51:07" itemprop="dateCreated datePublished" datetime="2019-11-01T21:41:27+08:00">2019-11-01</time>
+              <time title="创建时间：2019-11-01 21:41:27 / 修改时间：21:53:27" itemprop="dateCreated datePublished" datetime="2019-11-01T21:41:27+08:00">2019-11-01</time>
             </span>
           
             
@@ -291,7 +291,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="子类获取父类的父类的属性和方法"><a href="#子类获取父类的父类的属性和方法" class="headerlink" title="子类获取父类的父类的属性和方法"></a>子类获取父类的父类的属性和方法</h1><p>问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。<br>我寻思了一下有三种。</p><h3 id="1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。"><a href="#1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。" class="headerlink" title="1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。"></a>1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Grandfather&#123;</span><br><span class="line">    String a = &quot;爷爷&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Father extends Grandfather&#123;</span><br><span class="line">    String a = &quot;爸爸&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Son extends Father&#123;</span><br><span class="line">    String a = &quot;孙子&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.getGrandfatherName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <p>问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。<br>我寻思了一下有三种。</p><h3 id="1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。"><a href="#1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。" class="headerlink" title="1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。"></a>1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Grandfather&#123;</span><br><span class="line">    String a = &quot;爷爷&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Father extends Grandfather&#123;</span><br><span class="line">    String a = &quot;爸爸&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Son extends Father&#123;</span><br><span class="line">    String a = &quot;孙子&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.getGrandfatherName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -355,11 +355,19 @@
                 
               
 
-              <time title="创建时间：2019-10-29 22:23:21 / 修改时间：22:59:25" itemprop="dateCreated datePublished" datetime="2019-10-29T22:23:21+08:00">2019-10-29</time>
+              <time title="创建时间：2019-10-29 22:23:21" itemprop="dateCreated datePublished" datetime="2019-10-29T22:23:21+08:00">2019-10-29</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-01 21:53:29" itemprop="dateModified" datetime="2019-11-01T21:53:29+08:00">2019-11-01</time>
+              </span>
             
           
 
@@ -374,7 +382,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Bean的加载方式"><a href="#Bean的加载方式" class="headerlink" title="Bean的加载方式"></a>Bean的加载方式</h1><p>没错，这就是姗姗来迟的Bean的加载方式。</p>
+          <p>没错，这就是姗姗来迟的Bean的加载方式。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -438,11 +446,19 @@
                 
               
 
-              <time title="创建时间：2019-10-12 16:20:28 / 修改时间：16:26:07" itemprop="dateCreated datePublished" datetime="2019-10-12T16:20:28+08:00">2019-10-12</time>
+              <time title="创建时间：2019-10-12 16:20:28" itemprop="dateCreated datePublished" datetime="2019-10-12T16:20:28+08:00">2019-10-12</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-01 21:53:23" itemprop="dateModified" datetime="2019-11-01T21:53:23+08:00">2019-11-01</time>
+              </span>
             
           
 
@@ -457,7 +473,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="这才是java的ioc"><a href="#这才是java的ioc" class="headerlink" title="这才是java的ioc"></a>这才是java的ioc</h1><p>ioc之前应该知道ioc能干嘛。<br>ClassPathXmlApplicationContext</p>
+          <p>ioc之前应该知道ioc能干嘛。<br>ClassPathXmlApplicationContext</p>
 
         
       
@@ -513,11 +529,19 @@
                 
               
 
-              <time title="创建时间：2019-10-11 23:27:53 / 修改时间：23:37:10" itemprop="dateCreated datePublished" datetime="2019-10-11T23:27:53+08:00">2019-10-11</time>
+              <time title="创建时间：2019-10-11 23:27:53" itemprop="dateCreated datePublished" datetime="2019-10-11T23:27:53+08:00">2019-10-11</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-01 21:53:28" itemprop="dateModified" datetime="2019-11-01T21:53:28+08:00">2019-11-01</time>
+              </span>
             
           
 
@@ -532,7 +556,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="懒加载（延迟加载）"><a href="#懒加载（延迟加载）" class="headerlink" title="懒加载（延迟加载）"></a>懒加载（延迟加载）</h1><p>懒加载FatchType.LAZY也称为延迟加载，是Hibernate3关联关系对象默认的加载方式，所谓懒加载就是当在真正需要数据的时候，才真正执行数据加载操作。简单理解为，只有在使用的时候，才会发出sql语句进行查询。<br>懒加载的有效期是在session打开的情况下，当session关闭后，会报异常。当调用load方法加载对象时，返回代理对象，等到真正用到对象的内容时才发出sql语句。<br>急加载FatchType.EAGER 也成为立即加载，时立即执行sql语句。<br>在session没有关闭的之前，如果访问除id外的其他属性才会发sql语句去查询，我们经常犯的一个错误就是在当前session关闭以后访问由load（）加载的对象的非id属性，<br>此时Hibernate尝试通过当前session发sql查询，但发现session已经关闭，这样就会发出no session的异常 。</p>
+          <p>懒加载FatchType.LAZY也称为延迟加载，是Hibernate3关联关系对象默认的加载方式，所谓懒加载就是当在真正需要数据的时候，才真正执行数据加载操作。简单理解为，只有在使用的时候，才会发出sql语句进行查询。<br>懒加载的有效期是在session打开的情况下，当session关闭后，会报异常。当调用load方法加载对象时，返回代理对象，等到真正用到对象的内容时才发出sql语句。<br>急加载FatchType.EAGER 也成为立即加载，时立即执行sql语句。<br>在session没有关闭的之前，如果访问除id外的其他属性才会发sql语句去查询，我们经常犯的一个错误就是在当前session关闭以后访问由load（）加载的对象的非id属性，<br>此时Hibernate尝试通过当前session发sql查询，但发现session已经关闭，这样就会发出no session的异常 。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -596,11 +620,19 @@
                 
               
 
-              <time title="创建时间：2019-10-08 21:37:12 / 修改时间：23:18:57" itemprop="dateCreated datePublished" datetime="2019-10-08T21:37:12+08:00">2019-10-08</time>
+              <time title="创建时间：2019-10-08 21:37:12" itemprop="dateCreated datePublished" datetime="2019-10-08T21:37:12+08:00">2019-10-08</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-01 21:53:24" itemprop="dateModified" datetime="2019-11-01T21:53:24+08:00">2019-11-01</time>
+              </span>
             
           
 
@@ -679,11 +711,19 @@
                 
               
 
-              <time title="创建时间：2019-09-21 14:55:25 / 修改时间：16:20:25" itemprop="dateCreated datePublished" datetime="2019-09-21T14:55:25+08:00">2019-09-21</time>
+              <time title="创建时间：2019-09-21 14:55:25" itemprop="dateCreated datePublished" datetime="2019-09-21T14:55:25+08:00">2019-09-21</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-01 21:53:25" itemprop="dateModified" datetime="2019-11-01T21:53:25+08:00">2019-11-01</time>
+              </span>
             
           
 
@@ -698,7 +738,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h1><h5 id="首先注解是什么"><a href="#首先注解是什么" class="headerlink" title="首先注解是什么"></a>首先注解是什么</h5><p>Java注解又称Java标注，是Java语言5.0版本开始支持加入源代码的特殊语法元数据。为我们在代 码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便的使用这些数据。 Java语言中的类、方法、变量、参数和包等都可以被标注。和Javadoc不同，Java标注可以通过反 射获取注解内容。在编译器生成类文件时，注解可以被嵌入到字节码中。Java虚拟机可以保留注 解内容，在运行时可以获取到注解内容。（看不看一样，知道就是了）</p>
+          <h5 id="首先注解是什么"><a href="#首先注解是什么" class="headerlink" title="首先注解是什么"></a>首先注解是什么</h5><p>Java注解又称Java标注，是Java语言5.0版本开始支持加入源代码的特殊语法元数据。为我们在代 码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便的使用这些数据。 Java语言中的类、方法、变量、参数和包等都可以被标注。和Javadoc不同，Java标注可以通过反 射获取注解内容。在编译器生成类文件时，注解可以被嵌入到字节码中。Java虚拟机可以保留注 解内容，在运行时可以获取到注解内容。（看不看一样，知道就是了）</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -830,7 +870,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/20/java学习的反射（终究会来的学习记录）/" class="post-title-link" itemprop="url">java学习的反射（终究会来的学习记录）</a>
+            <a href="/2019/09/20/java学习的反射（终究会来的学习记录）/" class="post-title-link" itemprop="url">java学习的反射）</a>
           
         </h1>
 
@@ -856,7 +896,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-21 14:54:45" itemprop="dateModified" datetime="2019-09-21T14:54:45+08:00">2019-09-21</time>
+                <time title="修改时间：2019-11-01 21:53:29" itemprop="dateModified" datetime="2019-11-01T21:53:29+08:00">2019-11-01</time>
               </span>
             
           
@@ -872,7 +912,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="java反射"><a href="#java反射" class="headerlink" title="java反射"></a>java反射</h1><p>首先要知道什么是反射。<br>Java的反射指的就是在程序的运行的时候，对于任何一个的类，这个类的所有的方法和属性都可以知道。同样的对象作为类的实例，也可以对它所有的方法和属性加以调用。这种就叫做反射</p><h3 id="那么反射有什么用呢"><a href="#那么反射有什么用呢" class="headerlink" title="那么反射有什么用呢"></a>那么反射有什么用呢</h3><p>在运行时判断任意一个对象所属的类；<br>在运行时构造任意一个类的对象； 在运行时判断任意一个类所具有的成员变量和方法； 在运行时调用任意一个对象的方法；</p>
+          <p>首先要知道什么是反射。<br>Java的反射指的就是在程序的运行的时候，对于任何一个的类，这个类的所有的方法和属性都可以知道。同样的对象作为类的实例，也可以对它所有的方法和属性加以调用。这种就叫做反射</p><h3 id="那么反射有什么用呢"><a href="#那么反射有什么用呢" class="headerlink" title="那么反射有什么用呢"></a>那么反射有什么用呢</h3><p>在运行时判断任意一个对象所属的类；<br>在运行时构造任意一个类的对象； 在运行时判断任意一个类所具有的成员变量和方法； 在运行时调用任意一个对象的方法；</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -947,7 +987,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-01 21:53:09" itemprop="dateModified" datetime="2019-11-01T21:53:09+08:00">2019-11-01</time>
+                <time title="修改时间：2019-11-01 21:53:22" itemprop="dateModified" datetime="2019-11-01T21:53:22+08:00">2019-11-01</time>
               </span>
             
           
@@ -1038,7 +1078,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-18 00:06:59" itemprop="dateModified" datetime="2019-08-18T00:06:59+08:00">2019-08-18</time>
+                <time title="修改时间：2019-11-01 21:53:24" itemprop="dateModified" datetime="2019-11-01T21:53:24+08:00">2019-11-01</time>
               </span>
             
           
