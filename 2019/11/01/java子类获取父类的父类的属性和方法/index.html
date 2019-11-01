@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="子类获取父类的父类的属性和方法问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。我寻思了一下有三种。1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。12345678910111213141516171819class Grandfather&amp;#123;    S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="子类获取父类的父类的属性和方法">
+<meta property="og:url" content="https://bunnsisdreamer.github.io/2019/11/01/java子类获取父类的父类的属性和方法/index.html">
+<meta property="og:site_name" content="金清老贼的博客">
+<meta property="og:description" content="子类获取父类的父类的属性和方法问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。我寻思了一下有三种。1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。12345678910111213141516171819class Grandfather&amp;#123;    S">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-01T13:51:07.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="子类获取父类的父类的属性和方法">
+<meta name="twitter:description" content="子类获取父类的父类的属性和方法问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。我寻思了一下有三种。1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。12345678910111213141516171819class Grandfather&amp;#123;    S">
+  <link rel="canonical" href="https://bunnsisdreamer.github.io/2019/11/01/java子类获取父类的父类的属性和方法/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>子类获取父类的父类的属性和方法 | 金清老贼的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+<a href="https://github.com/bunnsisDreamer" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">金清老贼的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+</nav>
+  <div class="site-search">
+    
+  <div class="popup search-popup">
+  <div class="search-header">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <div class="search-input-wrapper">
+      <input autocomplete="off" autocorrect="off" autocapitalize="none"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="search-input">
+    </div>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+  <div id="search-result"></div>
+</div>
+
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/11/01/java子类获取父类的父类的属性和方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王 增益">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1566049148502.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金清老贼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">子类获取父类的父类的属性和方法
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-01 21:41:27 / 修改时间：21:51:07" itemprop="dateCreated datePublished" datetime="2019-11-01T21:41:27+08:00">2019-11-01</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="子类获取父类的父类的属性和方法"><a href="#子类获取父类的父类的属性和方法" class="headerlink" title="子类获取父类的父类的属性和方法"></a>子类获取父类的父类的属性和方法</h1><p>问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。<br>我寻思了一下有三种。</p><h3 id="1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。"><a href="#1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。" class="headerlink" title="1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。"></a>1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Grandfather&#123;</span><br><span class="line">    String a = &quot;爷爷&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Father extends Grandfather&#123;</span><br><span class="line">    String a = &quot;爸爸&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Son extends Father&#123;</span><br><span class="line">    String a = &quot;孙子&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.getGrandfatherName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<h3 id="2-利用反射的特性，利用类方法直接获取。"><a href="#2-利用反射的特性，利用类方法直接获取。" class="headerlink" title="2.利用反射的特性，利用类方法直接获取。"></a>2.利用反射的特性，利用类方法直接获取。</h3><p>这种和子不子类，继承不继承无关。<br>也不能这么说，假设我只是知道我是继承的父类，然后可以知道我父类继承的爷爷类，一直到太爷爷类都可以。类方法取出。</p>
+<h3 id="3-可以用虚拟机级别的invokeddynamic实现（基于java1-7版本以及以上才可以）"><a href="#3-可以用虚拟机级别的invokeddynamic实现（基于java1-7版本以及以上才可以）" class="headerlink" title="3.可以用虚拟机级别的invokeddynamic实现（基于java1.7版本以及以上才可以）"></a>3.可以用虚拟机级别的invokeddynamic实现（基于java1.7版本以及以上才可以）</h3><p>太高深了</p>
+<h4 id="以下cv"><a href="#以下cv" class="headerlink" title="以下cv"></a>以下cv</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @(#)Text4.java</span><br><span class="line"> *</span><br><span class="line"> *</span><br><span class="line"> * @author </span><br><span class="line"> * @version 1.00 2016/12/6</span><br><span class="line"> */</span><br><span class="line">import java.lang.invoke.MethodHandle;</span><br><span class="line">import java.lang.invoke.MethodType;</span><br><span class="line">import static java.lang.invoke.MethodHandles.lookup;</span><br><span class="line"> </span><br><span class="line">public class Text4 &#123;</span><br><span class="line"> </span><br><span class="line">    class GrandFather&#123;</span><br><span class="line">    	void thinking()&#123;</span><br><span class="line">    		System.out.println(&quot;i am grandfather&quot;);</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class Father extends GrandFather&#123;</span><br><span class="line">    	void thinking()&#123;</span><br><span class="line">    		System.out.println(&quot;i am father&quot;);</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class son extends Father&#123;</span><br><span class="line">    	void thinking()&#123;</span><br><span class="line">    		try&#123;</span><br><span class="line">    			MethodType mt = MethodType.methodType(void.class);</span><br><span class="line">    			MethodHandle mh = lookup().findSpecial(GrandFather.class,</span><br><span class="line">    				&quot;thinking&quot;, mt, getClass());</span><br><span class="line">    				mh.invoke(this);</span><br><span class="line">    		&#125;catch(Throwable e)&#123;</span><br><span class="line">    			</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">    	(new Text4().new son()).thinking();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对上述代码使用生成class字节码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line">Classfile /E:/JAVAprojects/noMain/bin/noMain/son.class</span><br><span class="line">  Last modified 2016-12-6; size 1386 bytes</span><br><span class="line">  Compiled from &quot;son.java&quot;</span><br><span class="line">public class noMain.son extends noMain.Father</span><br><span class="line">  minor version: 0</span><br><span class="line">  major version: 51</span><br><span class="line">  flags: ACC_PUBLIC, ACC_SUPER</span><br><span class="line">Constant pool:</span><br><span class="line">   #1 = Class              #2             // noMain/son</span><br><span class="line">   #2 = Utf8               noMain/son</span><br><span class="line">   #3 = Class              #4             // noMain/Father</span><br><span class="line">   #4 = Utf8               noMain/Father</span><br><span class="line">   #5 = Utf8               &lt;init&gt;</span><br><span class="line">   #6 = Utf8               ()V</span><br><span class="line">   #7 = Utf8               Code</span><br><span class="line">   #8 = Methodref          #3.#9          // noMain/Father.&quot;&lt;init&gt;&quot;:()V</span><br><span class="line">   #9 = NameAndType        #5:#6          // &quot;&lt;init&gt;&quot;:()V</span><br><span class="line">  #10 = Utf8               LineNumberTable</span><br><span class="line">  #11 = Utf8               LocalVariableTable</span><br><span class="line">  #12 = Utf8               this</span><br><span class="line">  #13 = Utf8               LnoMain/son;</span><br><span class="line">  #14 = Utf8               thinking</span><br><span class="line">  #15 = Methodref          #16.#18        // java/lang/Object.getClass:()Ljava/lang/Class;</span><br><span class="line">  #16 = Class              #17            // java/lang/Object</span><br><span class="line">  #17 = Utf8               java/lang/Object</span><br><span class="line">  #18 = NameAndType        #19:#20        // getClass:()Ljava/lang/Class;</span><br><span class="line">  #19 = Utf8               getClass</span><br><span class="line">  #20 = Utf8               ()Ljava/lang/Class;</span><br><span class="line">  #21 = Fieldref           #22.#24        // java/lang/Void.TYPE:Ljava/lang/Class;</span><br><span class="line">  #22 = Class              #23            // java/lang/Void</span><br><span class="line">  #23 = Utf8               java/lang/Void</span><br><span class="line">  #24 = NameAndType        #25:#26        // TYPE:Ljava/lang/Class;</span><br><span class="line">  #25 = Utf8               TYPE</span><br><span class="line">  #26 = Utf8               Ljava/lang/Class;</span><br><span class="line">  #27 = Methodref          #28.#30        // java/lang/invoke/MethodType.methodType:(Ljava/lang/Class;)Ljava/lang/invoke/MethodType;</span><br><span class="line">  #28 = Class              #29            // java/lang/invoke/MethodType</span><br><span class="line">  #29 = Utf8               java/lang/invoke/MethodType</span><br><span class="line">  #30 = NameAndType        #31:#32        // methodType:(Ljava/lang/Class;)Ljava/lang/invoke/MethodType;</span><br><span class="line">  #31 = Utf8               methodType</span><br><span class="line">  #32 = Utf8               (Ljava/lang/Class;)Ljava/lang/invoke/MethodType;</span><br><span class="line">  #33 = Methodref          #34.#36        // java/lang/invoke/MethodHandles.lookup:()Ljava/lang/invoke/MethodHandles$Lookup;</span><br><span class="line">  #34 = Class              #35            // java/lang/invoke/MethodHandles</span><br><span class="line">  #35 = Utf8               java/lang/invoke/MethodHandles</span><br><span class="line">  #36 = NameAndType        #37:#38        // lookup:()Ljava/lang/invoke/MethodHandles$Lookup;</span><br><span class="line">  #37 = Utf8               lookup</span><br><span class="line">  #38 = Utf8               ()Ljava/lang/invoke/MethodHandles$Lookup;</span><br><span class="line">  #39 = Class              #40            // noMain/GrandFather</span><br><span class="line">  #40 = Utf8               noMain/GrandFather</span><br><span class="line">  #41 = String             #14            // thinking</span><br><span class="line">  #42 = Methodref          #43.#45        // java/lang/invoke/MethodHandles$Lookup.findSpecial:(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/Class;)Ljava/lang/invoke/MethodHandle;</span><br><span class="line">  #43 = Class              #44            // java/lang/invoke/MethodHandles$Lookup</span><br><span class="line">  #44 = Utf8               java/lang/invoke/MethodHandles$Lookup</span><br><span class="line">  #45 = NameAndType        #46:#47        // findSpecial:(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/Class;)Ljava/lang/invoke/MethodHandle;</span><br><span class="line">  #46 = Utf8               findSpecial</span><br><span class="line">  #47 = Utf8               (Ljava/lang/Class;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/Class;)Ljava/lang/invoke/MethodHandle;</span><br><span class="line">  #48 = Methodref          #49.#51        // java/lang/invoke/MethodHandle.invoke:(LnoMain/son;)V</span><br><span class="line">  #49 = Class              #50            // java/lang/invoke/MethodHandle</span><br><span class="line">  #50 = Utf8               java/lang/invoke/MethodHandle</span><br><span class="line">  #51 = NameAndType        #52:#53        // invoke:(LnoMain/son;)V</span><br><span class="line">  #52 = Utf8               invoke</span><br><span class="line">  #53 = Utf8               (LnoMain/son;)V</span><br><span class="line">  #54 = Class              #55            // java/lang/Throwable</span><br><span class="line">  #55 = Utf8               java/lang/Throwable</span><br><span class="line">  #56 = Utf8               a</span><br><span class="line">  #57 = Utf8               mt</span><br><span class="line">  #58 = Utf8               Ljava/lang/invoke/MethodType;</span><br><span class="line">  #59 = Utf8               mh</span><br><span class="line">  #60 = Utf8               Ljava/lang/invoke/MethodHandle;</span><br><span class="line">  #61 = Utf8               StackMapTable</span><br><span class="line">  #62 = Class              #63            // java/lang/Class</span><br><span class="line">  #63 = Utf8               java/lang/Class</span><br><span class="line">  #64 = Utf8               main</span><br><span class="line">  #65 = Utf8               ([Ljava/lang/String;)V</span><br><span class="line">  #66 = Methodref          #1.#9          // noMain/son.&quot;&lt;init&gt;&quot;:()V</span><br><span class="line">  #67 = Methodref          #1.#68         // noMain/son.thinking:()V</span><br><span class="line">  #68 = NameAndType        #14:#6         // thinking:()V</span><br><span class="line">  #69 = Utf8               args</span><br><span class="line">  #70 = Utf8               [Ljava/lang/String;</span><br><span class="line">  #71 = Utf8               SourceFile</span><br><span class="line">  #72 = Utf8               son.java</span><br><span class="line">  #73 = Utf8               InnerClasses</span><br><span class="line">  #74 = Utf8               Lookup</span><br><span class="line">&#123;</span><br><span class="line">  public noMain.son();</span><br><span class="line">    descriptor: ()V</span><br><span class="line">    flags: ACC_PUBLIC</span><br><span class="line">    Code:</span><br><span class="line">      stack=1, locals=1, args_size=1</span><br><span class="line">         0: aload_0</span><br><span class="line">         1: invokespecial #8                  // Method noMain/Father.&quot;&lt;init&gt;&quot;:()V</span><br><span class="line">         4: return</span><br><span class="line">      LineNumberTable:</span><br><span class="line">        line 32: 0</span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            0       5     0  this   LnoMain/son;</span><br><span class="line"></span><br><span class="line">  void thinking();</span><br><span class="line">    descriptor: ()V</span><br><span class="line">    flags:</span><br><span class="line">    Code:</span><br><span class="line">      stack=5, locals=4, args_size=1</span><br><span class="line">         0: aload_0</span><br><span class="line">         1: invokevirtual #15                 // Method java/lang/Object.getClass:()Ljava/lang/Class;</span><br><span class="line">         4: astore_1</span><br><span class="line">         5: getstatic     #21                 // Field java/lang/Void.TYPE:Ljava/lang/Class;</span><br><span class="line">         8: invokestatic  #27                 // Method java/lang/invoke/MethodType.methodType:(Ljava/lang/Class;)Ljava/lang/invoke/MethodType;</span><br><span class="line">        11: astore_2</span><br><span class="line">        12: invokestatic  #33                 // Method java/lang/invoke/MethodHandles.lookup:()Ljava/lang/invoke/MethodHandles$Lookup;</span><br><span class="line">        15: ldc           #39                 // class noMain/GrandFather</span><br><span class="line">        17: ldc           #41                 // String thinking</span><br><span class="line">        19: aload_2</span><br><span class="line">        20: aload_1</span><br><span class="line">        21: invokevirtual #42                 // Method java/lang/invoke/MethodHandles$Lookup.findSpecial:(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/Class;)Ljava/lang/invoke/MethodHandle;</span><br><span class="line">        24: astore_3</span><br><span class="line">        25: aload_3</span><br><span class="line">        26: aload_0</span><br><span class="line">        27: invokevirtual #48                 // Method java/lang/invoke/MethodHandle.invoke:(LnoMain/son;)V</span><br><span class="line">        30: goto          34</span><br><span class="line">        33: astore_2</span><br><span class="line">        34: return</span><br><span class="line">      Exception table:</span><br><span class="line">         from    to  target type</span><br><span class="line">             5    30    33   Class java/lang/Throwable</span><br><span class="line">      LineNumberTable:</span><br><span class="line">        line 36: 0</span><br><span class="line">        line 38: 5</span><br><span class="line">        line 39: 12</span><br><span class="line">        line 40: 15</span><br><span class="line">        line 41: 17</span><br><span class="line">        line 40: 21</span><br><span class="line">        line 39: 24</span><br><span class="line">        line 43: 25</span><br><span class="line">        line 44: 30</span><br><span class="line">        line 47: 34</span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            0      35     0  this   LnoMain/son;</span><br><span class="line">            5      30     1     a   Ljava/lang/Class;</span><br><span class="line">           12      18     2    mt   Ljava/lang/invoke/MethodType;</span><br><span class="line">           25       5     3    mh   Ljava/lang/invoke/MethodHandle;</span><br><span class="line">      StackMapTable: number_of_entries = 2</span><br><span class="line">        frame_type = 255 /* full_frame */</span><br><span class="line">          offset_delta = 33</span><br><span class="line">          locals = [ class noMain/son, class java/lang/Class ]</span><br><span class="line">          stack = [ class java/lang/Throwable ]</span><br><span class="line">        frame_type = 0 /* same */</span><br><span class="line"></span><br><span class="line">  public static void main(java.lang.String[]);</span><br><span class="line">    descriptor: ([Ljava/lang/String;)V</span><br><span class="line">    flags: ACC_PUBLIC, ACC_STATIC</span><br><span class="line">    Code:</span><br><span class="line">      stack=2, locals=1, args_size=1</span><br><span class="line">         0: new           #1                  // class noMain/son</span><br><span class="line">         3: dup</span><br><span class="line">         4: invokespecial #66                 // Method &quot;&lt;init&gt;&quot;:()V</span><br><span class="line">         7: invokevirtual #67                 // Method thinking:()V</span><br><span class="line">        10: return</span><br><span class="line">      LineNumberTable:</span><br><span class="line">        line 53: 0</span><br><span class="line">        line 55: 10</span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            0      11     0  args   [Ljava/lang/String;</span><br><span class="line">&#125;</span><br><span class="line">SourceFile: &quot;son.java&quot;</span><br><span class="line">InnerClasses:</span><br><span class="line">     public static final #74= #43 of #34; //Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles</span><br></pre></td></tr></table></figure>
+
+<p>没有生成invokedynamic调用，应该是我的jvm配置出错，使得jvm栈帧的模式值调用了出栈的第一个实例使得输出答案为 i am father</p>
+<p>虚拟机级别动态分配调用方法代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @(#)StaticDispatch.java</span><br><span class="line"> *</span><br><span class="line"> *</span><br><span class="line"> * @author </span><br><span class="line"> * @version 1.00 2016/12/6</span><br><span class="line"> */</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">import java.lang.invoke.*;</span><br><span class="line">import java.lang.invoke.CallSite;</span><br><span class="line">import java.lang.invoke.ConstantCallSite;</span><br><span class="line">import java.lang.invoke.MethodHandle;</span><br><span class="line">import java.lang.invoke.MethodHandles;</span><br><span class="line">import java.lang.invoke.MethodType;</span><br><span class="line">import static java.lang.invoke.MethodHandles.lookup;</span><br><span class="line"> </span><br><span class="line">public class StaticDispatch &#123;</span><br><span class="line"> </span><br><span class="line"> 	static class ClassA&#123;</span><br><span class="line"> 		public void println(String s)&#123;</span><br><span class="line"> 			System.out.println(s);</span><br><span class="line"> 		&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">	private static MethodHandle getPrintlnMH(Object recevier) throws Throwable&#123;</span><br><span class="line">		MethodType mt = MethodType.methodType(void.class,String.class);</span><br><span class="line">		return lookup().findVirtual(recevier.getClass(),&quot;println&quot;,mt).bindTo(recevier);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">    </span><br><span class="line">    public static void main(String[] args) throws Throwable&#123;</span><br><span class="line">		Object ob = System.currentTimeMillis() % 2 == 0 ? System.out : new ClassA();</span><br><span class="line">		</span><br><span class="line">		getPrintlnMH(ob).invokeExact(&quot;invoke println&quot;); </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/29/Bean的加载方式/" rel="next" title="Bean的加载方式">
+                  <i class="fa fa-chevron-left"></i> Bean的加载方式
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/1566049148502.gif"
+      alt="王 增益">
+  <p class="site-author-name" itemprop="name">王 增益</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+        
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/bunnsisDreamer" title="GitHub &rarr; https://github.com/bunnsisDreamer" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/u/5896708656" title="Weibo &rarr; https://weibo.com/u/5896708656" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+  </div>
+
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#子类获取父类的父类的属性和方法"><span class="nav-number">1.</span> <span class="nav-text">子类获取父类的父类的属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-利用反射的特性，利用类方法直接获取。"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.利用反射的特性，利用类方法直接获取。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-可以用虚拟机级别的invokeddynamic实现（基于java1-7版本以及以上才可以）"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.可以用虚拟机级别的invokeddynamic实现（基于java1.7版本以及以上才可以）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#以下cv"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">以下cv</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王 增益</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.3.0</div> -->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+
+<script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script><script src="/js/post-details.js?v=7.3.0"></script>
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '9846730fad395e384b60',
+      clientSecret: '0a12ac29d217aaa7932442da3f476c682db536fb',
+      repo: 'bunnsisDreamerer',
+      owner: 'bunnsisDreamer',
+      admin: ['bunnsisDreamer'],
+      id: '9c749d2fd0cceecaf3b839b378ae6d22',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+</body>
+</html>
