@@ -57,17 +57,17 @@
   };
 </script>
 
-  <meta name="description" content="Java虚拟机的类加载的过程（这应该是第一篇的才对）虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。">
+  <meta name="description" content="虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java虚拟机的类加载">
 <meta property="og:url" content="https://bunnsisdreamer.github.io/2019/09/21/java虚拟机的类加载/index.html">
 <meta property="og:site_name" content="金清老贼的博客">
-<meta property="og:description" content="Java虚拟机的类加载的过程（这应该是第一篇的才对）虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。">
+<meta property="og:description" content="虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-20T16:52:52.782Z">
+<meta property="og:updated_time" content="2019-11-16T11:20:08.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java虚拟机的类加载">
-<meta name="twitter:description" content="Java虚拟机的类加载的过程（这应该是第一篇的才对）虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。">
+<meta name="twitter:description" content="虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初">
   <link rel="canonical" href="https://bunnsisdreamer.github.io/2019/09/21/java虚拟机的类加载/">
 
 
@@ -276,11 +276,19 @@
                 
               
 
-              <time title="创建时间：2019-09-21 00:40:57 / 修改时间：00:52:52" itemprop="dateCreated datePublished" datetime="2019-09-21T00:40:57+08:00">2019-09-21</time>
+              <time title="创建时间：2019-09-21 00:40:57" itemprop="dateCreated datePublished" datetime="2019-09-21T00:40:57+08:00">2019-09-21</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-16 19:20:08" itemprop="dateModified" datetime="2019-11-16T19:20:08+08:00">2019-11-16</time>
+              </span>
             
           
 
@@ -303,9 +311,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Java虚拟机的类加载的过程（这应该是第一篇的才对）"><a href="#Java虚拟机的类加载的过程（这应该是第一篇的才对）" class="headerlink" title="Java虚拟机的类加载的过程（这应该是第一篇的才对）"></a>Java虚拟机的类加载的过程（这应该是第一篇的才对）</h1><h3 id="虚拟机的类加载机制"><a href="#虚拟机的类加载机制" class="headerlink" title="虚拟机的类加载机制"></a>虚拟机的类加载机制</h3><p>虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。</p><p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。</p><a id="more"></a>
+        <h3 id="虚拟机的类加载机制"><a href="#虚拟机的类加载机制" class="headerlink" title="虚拟机的类加载机制"></a>虚拟机的类加载机制</h3><p>虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。</p><p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。</p><p>当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初始化。</p><a id="more"></a>
 
-<p>当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初始化。</p>
+
 <h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>加载就是虚拟机查找.class，并创建一个java.lang.Class的对象，将类的.class文件中的二进制数据读入内存，放在运行时区域的方法区内。然后在堆中创建 java.lang.Class 对象，用来封装类在方法区的数据结构。 </p>
 <p>（1）Java虚拟机将.class文件读入内存，并为之创建一个Class对象。 （2）任何类被使用时系统都会为其创建一个且仅有一个Class对象。<br>（3）这个Class对象描述了这个类创建出来的对象的所有信息</p>
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接包括验证、准备以及解析三个阶段。<br>（1）验证阶段。主要的目的是确保被加载的类（.class文件的字节流）满足Java虚拟机规范，不 会造成安全错误。 （2）准备阶段。负责为类的静态成员分配内存，并设置默认初始值。 （3）解析阶段。将类的二进制数据中的符号引用替换为直接引用。 </p>
@@ -404,7 +412,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -463,7 +471,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java虚拟机的类加载的过程（这应该是第一篇的才对）"><span class="nav-number">1.</span> <span class="nav-text">Java虚拟机的类加载的过程（这应该是第一篇的才对）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机的类加载机制"><span class="nav-number">1.0.1.</span> <span class="nav-text">虚拟机的类加载机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载"><span class="nav-number">1.0.2.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接"><span class="nav-number">1.0.3.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">1.0.4.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么说呢"><span class="nav-number">1.0.5.</span> <span class="nav-text">怎么说呢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在自己的项目里新建一个java-lang包，里面新建了一个String类，能代替系统String吗"><span class="nav-number">1.0.6.</span> <span class="nav-text">在自己的项目里新建一个java.lang包，里面新建了一个String类，能代替系统String吗</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机的类加载机制"><span class="nav-number">1.</span> <span class="nav-text">虚拟机的类加载机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载"><span class="nav-number">2.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接"><span class="nav-number">3.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">4.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么说呢"><span class="nav-number">5.</span> <span class="nav-text">怎么说呢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在自己的项目里新建一个java-lang包，里面新建了一个String类，能代替系统String吗"><span class="nav-number">6.</span> <span class="nav-text">在自己的项目里新建一个java.lang包，里面新建了一个String类，能代替系统String吗</span></a></li></ol></div>
             
 
           </div>
