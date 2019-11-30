@@ -57,17 +57,17 @@
   };
 </script>
 
-  <meta name="description" content="java虚拟机的内存模型（持续更新）内存模型里面分为方法区（Method Area）、堆（Heap）、虚拟机栈（VM Stack）、本地方法堆（Native Method Stack）、程序计数器（Program Counter Register）、执行引擎、本地库接口、本地方法库。JAM内存区域堆堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。堆里面存放的数据是我们">
+  <meta name="description" content="java虚拟机内存模型堆堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。此内存区域的唯一目的就是存放对象实例。也就是说我们所有对象、数组都需要在这个堆内存里面进行空间的申请和保存。这块内存也是我们在垃圾收集里面主要的清理的一个区域。所以说也可以说上面GC堆。从内存回收的角度也会有新生代···可以通过-Xmx和-Xms来控制当前的虚拟机内存的大小，如果说堆内存被占满了，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java的jvm（持续更新）">
 <meta property="og:url" content="https://bunnsisdreamer.github.io/2019/11/16/第十周周会分享（可恶）/index.html">
 <meta property="og:site_name" content="金清老贼的博客">
-<meta property="og:description" content="java虚拟机的内存模型（持续更新）内存模型里面分为方法区（Method Area）、堆（Heap）、虚拟机栈（VM Stack）、本地方法堆（Native Method Stack）、程序计数器（Program Counter Register）、执行引擎、本地库接口、本地方法库。JAM内存区域堆堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。堆里面存放的数据是我们">
+<meta property="og:description" content="java虚拟机内存模型堆堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。此内存区域的唯一目的就是存放对象实例。也就是说我们所有对象、数组都需要在这个堆内存里面进行空间的申请和保存。这块内存也是我们在垃圾收集里面主要的清理的一个区域。所以说也可以说上面GC堆。从内存回收的角度也会有新生代···可以通过-Xmx和-Xms来控制当前的虚拟机内存的大小，如果说堆内存被占满了，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-30T05:26:42.861Z">
+<meta property="og:updated_time" content="2019-11-30T06:55:59.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java的jvm（持续更新）">
-<meta name="twitter:description" content="java虚拟机的内存模型（持续更新）内存模型里面分为方法区（Method Area）、堆（Heap）、虚拟机栈（VM Stack）、本地方法堆（Native Method Stack）、程序计数器（Program Counter Register）、执行引擎、本地库接口、本地方法库。JAM内存区域堆堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。堆里面存放的数据是我们">
+<meta name="twitter:description" content="java虚拟机内存模型堆堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。此内存区域的唯一目的就是存放对象实例。也就是说我们所有对象、数组都需要在这个堆内存里面进行空间的申请和保存。这块内存也是我们在垃圾收集里面主要的清理的一个区域。所以说也可以说上面GC堆。从内存回收的角度也会有新生代···可以通过-Xmx和-Xms来控制当前的虚拟机内存的大小，如果说堆内存被占满了，">
   <link rel="canonical" href="https://bunnsisdreamer.github.io/2019/11/16/第十周周会分享（可恶）/">
 
 
@@ -287,7 +287,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-30 13:26:42" itemprop="dateModified" datetime="2019-11-30T13:26:42+08:00">2019-11-30</time>
+                <time title="修改时间：2019-11-30 14:55:59" itemprop="dateModified" datetime="2019-11-30T14:55:59+08:00">2019-11-30</time>
               </span>
             
           
@@ -311,23 +311,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="java虚拟机的内存模型（持续更新）"><a href="#java虚拟机的内存模型（持续更新）" class="headerlink" title="java虚拟机的内存模型（持续更新）"></a>java虚拟机的内存模型（持续更新）</h3><p>内存模型里面分为方法区（Method Area）、堆（Heap）、虚拟机栈（VM Stack）、本地方法堆（Native Method Stack）、程序计数器（Program Counter Register）、执行引擎、本地库接口、本地方法库。</p><h3 id="JAM内存区域"><a href="#JAM内存区域" class="headerlink" title="JAM内存区域"></a>JAM内存区域</h3><h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><p>堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。堆里面存放的数据是我们当前对象的实例。也就是说我们所有对象、数组都需要在这个堆内存里面进行空间的申请和保存。这块内存也是我们在垃圾收集里面主要的清理的一个区域。所以说也可以说上面gc堆。从内存回收的角度也会有新生代···<br>可以通过-Xmx和-Xms来控制当前的虚拟机内存的大小，如果说堆内存被占满了，程序没有办法申请空间再去分配对象什么的，会爆出OutOfMemoryError异常。</p><a id="more"></a>
-
-<h4 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h4><p>虚拟机栈是线程私有的，也是和线程生命周期相同，虚拟机栈里面是描述java方法执行的内存模型，我们每个方法在执行的时候，都会创建栈帧。栈帧里面所进行存储（结构）：局部变量表、操作数栈、动态链接和方法出口。<br>局部变量就是编译期间的基本数据类型的或者是对象的引用（指的是当前对象数据在堆里面的地址）如果虚拟机栈里面内存里面没有办法去申请内存保存更多数据（譬如递归会有栈溢出）。<br>操作数栈和局部变量区一样，操作数栈也是被组织成一个以字长为单位的数组。但是和前者不同的是，它不是通过索引来访问，而是通过标准的栈操作——压栈和出栈—来访问的。<br>动态连接 : 虚拟机运行的时候,运行时常量池会保存大量的符号引用，这些符号引用可以看成是每个方法的间接引用。<br>方法的返回分为两种情况：<br>一种是正常退出，退出后会根据方法的定义来决定是否要传返回值给上层的调用者。<br>一种是异常导致的方法结束，这种情况是不会传返回值给上层的调用方法。<br>不过无论是那种方式的方法结束，在退出当前方法时都会跳转到当前方法被调用的位置。<br>如果方法是正常退出的，则调用者的PC计数器的值就可以作为返回地址；如果是因为异常退出的，则是需要通过异常处理表来确定。</p>
+        <h3 id="java虚拟机内存模型"><a href="#java虚拟机内存模型" class="headerlink" title="java虚拟机内存模型"></a>java虚拟机内存模型</h3><h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><p>堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。此内存区域的唯一目的就是存放对象实例。也就是说我们所有对象、数组都需要在这个堆内存里面进行空间的申请和保存。这块内存也是我们在垃圾收集里面主要的清理的一个区域。所以说也可以说上面GC堆。从内存回收的角度也会有新生代···<br>可以通过-Xmx和-Xms来控制当前的虚拟机内存的大小，如果说堆内存被占满了，程序没有办法申请空间再去分配对象什么的，会爆出OutOfMemoryError异常。</p><a id="more"></a>
+<h4 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h4><p>虚拟机栈是线程私有的，也是和线程生命周期相同，虚拟机栈里面是描述java方法执行的内存模型，我们每个方法在执行的时候，都会创建栈帧。栈帧里面所进行存储（结构）：局部变量表、操作数栈、动态链接和方法出口。<br>局部变量就是编译期间的基本数据类型的或者是对象的引用（指的是当前对象数据在堆里面的地址）如果虚拟机栈里面内存里面没有办法去申请内存保存更多数据（譬如递归会有栈溢出）。<br>操作数栈和局部变量区一样，操作数栈也是被组织成一个以字长为单位的数组。但是和前者不同的是，它不是通过索引来访问，而是通过标准的栈操作——压栈和出栈—来访问的。<br>动态连接 : 虚拟机运行的时候,运行时常量池会保存大量的符号引用，这些符号引用可以看成是每个方法的间接引用。<br>方法的返回分为两种情况：<br>一种是正常退出，退出后会根据方法的定义来决定是否要传返回值给上层的调用者。<br>一种是异常导致的方法结束，这种情况是不会传返回值给上层的调用方法。<br>不过无论是那种方式的方法结束，在退出当前方法时都会跳转到当前方法被调用的位置。<br>如果方法是正常退出的，则调用者的PC计数器的值就可以作为返回地址；如果是因为异常退出的，则是需要通过异常处理表来确定。<br>这个区域规定了两种异常状态：如果线程请求的栈深度大于虚拟机所允许的深度，则抛出StackOverflowError异常；如果虚拟机栈可以动态扩展，在扩展是无法申请到足够的内存，就会抛出OutOfMemoryError异常。</p>
 <h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>类似于虚拟机栈，区别是虚拟机栈里面保存的是跟我们java系统里面所运行的方法类提供服务的。而我们本地方法栈是为虚拟机去使用当前的一些本地方法去用的。就是一些Native方法。（并不是特别关心）</p>
-<h4 id="方法区-永久带"><a href="#方法区-永久带" class="headerlink" title="方法区/永久带"></a>方法区/永久带</h4><p>类似于堆、它也是线程共享的。主要用于存储当前对于虚拟机加载关于类、常量、静态变量或者是一些即时编译后的数据。如果方法区保存数据到临界值了，无法储存了也会说内存溢出。方法区里面有一个运行常量池（Runtime Constant Pool）。在加载java程序的时候，关于类的一些版本，类里面的一些成员变量、方法、接口、一些描述类的信息都会在这里面。还有存放在编译期间的自变量和符号引用。</p>
-<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>占的内存最小，执行当前字节码行号的记录器。java在多线程，线程轮流切换到时候。一个cpu执行一条线程的指令。譬如执行12345切换。另一个切换123.我们可以通过程序计数器帮我们实现恢复到之前切换走的位置。是线程私有的，用来看线程自己的一个执行的位置，每个线程都有程序计数器，每个线程都有自己独立的计数器，所有线程之间都是互不影响的。</p>
-<h4 id="java8元空间"><a href="#java8元空间" class="headerlink" title="java8元空间"></a>java8元空间</h4><p>java8没有永久代。和永久代类似，都是对jvm规范。最大区别是原空间在本地内存，不在虚拟机。<br>1.字符串在永久代中，现实使用钟易出现问题，用于永久代内存经常不够或发生内润泄露，爆出异常。<br>2.类的方法的信息等比较难以确定其大小，因此对于永久代的大小指定比较困难，太小用以出现永久代溢出，太大用以导致老年代溢出。<br>3.永久代会为GC带来不必要的复杂度，并且回收效率偏低。</p>
-<h3 id="jvm运行时内存"><a href="#jvm运行时内存" class="headerlink" title="jvm运行时内存"></a>jvm运行时内存</h3><h4 id="堆-1"><a href="#堆-1" class="headerlink" title="堆"></a>堆</h4><p>根据Java虚拟机规范的规定，Java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可，就像我们的磁盘空间一样。在实现时，既可以实现成固定大小的，也可以是可扩展的，不过当前主流的虚拟机都是按照可扩展来实现的（通过-Xmx和-Xms控制）。<br>如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。<br>堆大小 = 新生代 + 老年代。其中，堆的大小可以通过参数 –Xms、-Xmx 来指定。<br>默认的，新生代 ( Young ) 与老年代 ( Old ) 的比例的值为 1:2( 该值可以通过参数 –XX:NewRatio来指定 )，<br>即：新生代 ( Young ) = 1/3 的堆空间大小。老年代 ( Old ) = 2/3 的堆空间大小。</p>
-<h4 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h4><p>程序新创建的对象都是从新生代分配内存，新生代由Eden Space和两块相同大小的Survivor Space(通常又称S0和S1或From和To)构成。<br>可通过-Xmn参数来指定新生代的大小；也可以通过-XX:SurvivorRation来调整Eden Space及SurvivorSpace的大小。<br>1、新生代的初始值NewSize默认为1M，最大值需要设置，可以通过参数-XX:NewSize和-XX:MaxNewSize或-Xmn进行设置；<br>2、为老年代与新生代的大小比值，默认为2：1；<br>3、SurvivorRatio为新生代中Eden和Survivor的大小比值，默认为8：1<br>    Edem : from : to = 8 :1 : 1<br>    可以通过参数-XX:SurvivorRatio 来设定 )，即： Eden = 8/10 的新生代空间大小，from = to = 1/10 的新生代空间大小。<br>JVM 每次只会使用 Eden 和其中的一块 Survivor 区域来为对象服务，所以无论什么时候，总是有一块Survivor 区域是空闲着的。<br>新生代实际可用的内存空间为 9/10 ( 即90% )的新生代空间。</p>
-<h4 id="老年代"><a href="#老年代" class="headerlink" title="老年代"></a>老年代</h4><p>用于存放经过多次新生代GC仍然存活的对象，例如缓存对象，新建的对象也有可能直接进入老年代，主要有两种情况：</p>
-<p>1、大对象，可通过启动参数设置-XX:PretenureSizeThreshold=1024(单位为字节，默认为0)来代表超过多大时就不在新生代分配，而是直接在老年代分配。<br>2、大的数组对象，且数组中无引用外部对象。</p>
-<p>老年代所占的内存大小为-Xmx对应的值减去-Xmn对应的值。<br>如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。</p>
-<h4 id="永久代"><a href="#永久代" class="headerlink" title="永久代"></a>永久代</h4><h3 id="java四种引用类型"><a href="#java四种引用类型" class="headerlink" title="java四种引用类型"></a>java四种引用类型</h3><table>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>类似于堆、它也是线程共享的。主要用于存储当前对于虚拟机加载关于类、常量、静态变量或者是一些即时编译后的数据。如果方法区保存数据到临界值了，无法储存了也会说内存溢出。方法区里面有一个运行常量池（Runtime Constant Pool）。在加载java程序的时候，关于类的一些版本，类里面的一些成员变量、方法、接口、一些描述类的信息都会在这里面。还有存放在编译期间的自变量和符号引用。<br>它有个别命叫Non-Heap（非堆）。当方法区无法满足内存分配需求时，抛出OutOfMemoryError异常。</p>
+<h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>与在JVM堆分配内存(allocate)相比，直接内存分配（allocateDirect）的访问性能更好，但分配较慢。</p>
+<h4 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h4><p>直接内存不是虚拟机运行时数据区的一部分，也不是java虚拟机规范中定义的内存区域。但这部分区域也被频繁使用，而且也可能导致OutOfMemoryError异常。<br>在JDK1.4中新加入的NIO（New Input/Output）类，引入了一种基于通道（Channel）与缓冲区（Buffer）的I/O方式，它可以使用Native函数库直接分配堆外内存，然后通过一个存储在java堆中的DirectByteBuffer对象作为这块内存的引用进行操作。这样能在一些场景中显著提高性能，因为避免了在Java堆和Native堆中来回复制数据。与在JVM堆分配内存(allocate)相比，直接内存分配（allocateDirect）的访问性能更好，但分配较慢。</p>
+<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>占的内存小，执行当前字节码行号的记录器。java在多线程，线程轮流切换到时候。一个cpu执行一条线程的指令。譬如执行12345切换。另一个切换123.我们可以通过程序计数器帮我们实现恢复到之前切换走的位置。是线程私有的，用来看线程自己的一个执行的位置，每个线程都有程序计数器，每个线程都有自己独立的计数器，所有线程之间都是互不影响的。</p>
+<h3 id="垃圾回收机制算法"><a href="#垃圾回收机制算法" class="headerlink" title="垃圾回收机制算法"></a>垃圾回收机制算法</h3><h4 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h4><p>不定时去堆内存中清理不可达对象。不可达的对象并不会马上就会直接回收， 垃圾收集器在一个Java程序中的执行是自动的，不能强制执行，即使能明确地判断出有一块内存已经无用了，是应该回收的，我们也不能强制垃圾收集器回收该内存块。<br>唯一能做的就是通过调用System.gc 方法来”建议”执行垃圾收集器，但其是否可以执行，什么时候执行却都是不可知的。这也是垃圾收集器的最主要的缺点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Test test = new Test();</span><br><span class="line">		test = null;</span><br><span class="line">		System.gc(); // 手动回收垃圾</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	protected void finalize() throws Throwable &#123;</span><br><span class="line">		// gc回收垃圾之前调用</span><br><span class="line">		System.out.println(&quot;垃圾回收机制...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="finalize方法"><a href="#finalize方法" class="headerlink" title="finalize方法"></a>finalize方法</h4><p>Java技术使用finalize()方法在垃圾收集器将对象从内存中清除出去前，做必要的清理工作。这个方法是由垃圾收集器在确定这个对象没有被引用时对这个对象调用的。<br>它是在Object类中定义的，所有的类都继承了它。子类覆盖finalize()方法以整理系统资源或者执行其他清理工作。finalize()方法是在垃圾收集器删除对象之前对这个对象调用的。</p>
+<h4 id="判断对象是否存活"><a href="#判断对象是否存活" class="headerlink" title="判断对象是否存活"></a>判断对象是否存活</h4><h5 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h5><p>引用计数法就是如果一个对象没有被任何引用指向，则可视之为垃圾。这种方法的缺点就是不能检测到环的存在。<br>首先需要声明，至少主流的Java虚拟机里面都没有选用引用计数算法来管理内存。<br>什么是引用计数算法：给对象中添加一个引用计数器，每当有一个地方引用它时，计数器值加１；当引用失效时，计数器值减１.任何时刻计数器值为０的对象就是不可能再被使用的。那为什么主流的Java虚拟机里面都没有选用这种算法呢？其中最主要的原因是它很难解决对象之间相互循环引用的问题。</p>
+<h5 id="搜索根算法"><a href="#搜索根算法" class="headerlink" title="搜索根算法"></a>搜索根算法</h5><p>搜索算法的基本思路就是通过一系列名为”GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链(Reference Chain)，当一个对象到GC Roots没有任何引用链相连时，则证明此对象是不可用的。<br>可以作为GCRoots的对象包括下面几种：<br>(1). 虚拟机栈（栈帧中的局部变量区，也叫做局部变量表）中引用的对象。<br>(2). 方法区中的类静态属性引用的对象。<br>(3). 方法区中常量引用的对象。<br>(4). 本地方法栈中JNI(Native方法)引用的对象。</p>
+<h5 id="java四种引用类型"><a href="#java四种引用类型" class="headerlink" title="java四种引用类型"></a>java四种引用类型</h5><p>强引用 类似于 Object obj = new Object(); 创建的，只要强引用在就不回收。<br>软引用<br>SoReference 类实现软引用。在系统要发生内存溢出异常之前，将会把这些对象列进回收范围之中进行 二次回收。<br>弱引用 WeakReference 类实现弱引用。对象只能生存到下一次垃圾收集之前。在垃圾收集器工作时，无论内存 是否足够都会回收掉只被弱引用关联的对象。<br>虚引用<br>PhantomReference 类实现虚引用。无法通过虚引用获取一个对象的实例，为一个对象设置虚引用关联的 唯一目的就是能在这个对象被收集器回收时收到一个系统通知。</p>
+<table>
 <thead>
 <tr>
 <th>引用类型</th>
-<th>-</th>
 <th>用途</th>
 <th>被回收时间</th>
 <th>生存时间</th>
@@ -335,34 +336,53 @@
 </thead>
 <tbody><tr>
 <td>强引用</td>
-<td>-</td>
 <td>对象的一般状态</td>
 <td>从来不会</td>
 <td>JVM停止运行时终止</td>
 </tr>
 <tr>
 <td>软引用</td>
-<td>-</td>
 <td>对象缓存</td>
 <td>内存不足</td>
 <td>内存不足时停止</td>
 </tr>
 <tr>
 <td>弱引用</td>
-<td>-</td>
 <td>对象缓存</td>
 <td>垃圾回收</td>
 <td>GC后停止</td>
 </tr>
 <tr>
 <td>虚引用</td>
-<td>-</td>
 <td>不知道</td>
 <td>不知道</td>
 <td>不知道</td>
 </tr>
 </tbody></table>
-<p>### </p>
+<h4 id="分代算法"><a href="#分代算法" class="headerlink" title="分代算法"></a>分代算法</h4><p>这种算法，根据对象的存活周期的不同将内存划分成几块，新生代和老年代，新生代 ( Young ) 又被划分为三个区域：Eden、From Survivor、To Survivor。这样划分的目的是为了使 JVM 能够更好的管理堆内存中的对象，包括内存的分配以及回收。<br>新生代对象朝生夕死,对象数量多，只要重点扫描这个区域，那么就可以大大提高垃圾收集的效率。另外老年代对象存储久，无需经常扫描老年代，避免扫描导致的开销。</p>
+<h5 id="堆-1"><a href="#堆-1" class="headerlink" title="堆"></a>堆</h5><p>根据Java虚拟机规范的规定，Java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可，就像我们的磁盘空间一样。在实现时，既可以实现成固定大小的，也可以是可扩展的，不过当前主流的虚拟机都是按照可扩展来实现的（通过-Xmx和-Xms控制）。<br>如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。<br>堆大小 = 新生代 + 老年代。其中，堆的大小可以通过参数 –Xms、-Xmx 来指定。<br>默认的，新生代 ( Young ) 与老年代 ( Old ) 的比例的值为 1:2( 该值可以通过参数 –XX:NewRatio来指定 )，<br>即：新生代 ( Young ) = 1/3 的堆空间大小。老年代 ( Old ) = 2/3 的堆空间大小。</p>
+<h5 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h5><p>新的对象实例被创建的时候通常在Eden空间，发生在Eden空间上的GC称为Minor GC，当在新生代发生一次GC后，会将Eden和其中一个Survivor空间的内存复制到另外一个Survivor中，如果反复几次有对象一直存活，此时内存对象将会被移至老年代。可以看到新生代中Eden占了大部分，而两个Survivor实际上占了很小一部分。这是因为大部分的对象被创建过后很快就会被GC</p>
+<p>1、新生代的初始值NewSize默认为1M，最大值需要设置，可以通过参数-XX:NewSize和-XX:MaxNewSize或-Xmn进行设置；<br>2、为老年代与新生代的大小比值，默认为2：1；<br>3、SurvivorRatio为新生代中Eden和Survivor的大小比值，默认为8：1<br>    Edem : from : to = 8 :1 : 1<br>    可以通过参数-XX:SurvivorRatio 来设定 )，即： Eden = 8/10 的新生代空间大小，from = to = 1/10 的新生代空间大小。<br>JVM 每次只会使用 Eden 和其中的一块 Survivor 区域来为对象服务，所以无论什么时候，总是有一块Survivor 区域是空闲着的。<br>新生代实际可用的内存空间为 9/10 ( 即90% )的新生代空间。</p>
+<h5 id="老年代"><a href="#老年代" class="headerlink" title="老年代"></a>老年代</h5><p>新生代每进行一次垃圾收集后，就会给存活的对象“加1岁”，当年龄达到一定数量的时候就会进入老年代（默认是15,可以通过-XX：MaxTenuringThreshold来设置）。<br>另外，比较大的对象也会进入老年代，可以-XX：PretenureSizeThreshold进行设置。如-XX：PretenureSizeThreshold3M，那么大于3M的对象就会直接就进入老年代。<br>因此，老年代中存放的都是一些生命周期较长的对象或者特别大的对象。</p>
+<h4 id="垃圾回收机制策略"><a href="#垃圾回收机制策略" class="headerlink" title="垃圾回收机制策略"></a>垃圾回收机制策略</h4><h5 id="标记清除算法"><a href="#标记清除算法" class="headerlink" title="标记清除算法"></a>标记清除算法</h5><p>该算法有两个阶段。<br>1.标记阶段：找到所有可访问的对象，做个标记<br>2.清除阶段：遍历堆，把未被标记的对象回收</p>
+<p>该算法一般应用于老年代,因为老年代的对象生命周期比较长。</p>
+<p>标记清除算法的优点和缺点<br>1.优点 </p>
+<ul>
+<li>是可以解决循环引用的问题 </li>
+<li>必要时才回收(内存不足时) </li>
+</ul>
+<p>2.缺点： </p>
+<ul>
+<li>回收时，应用需要挂起，也就是stop the world。 </li>
+<li>标记和清除的效率不高，尤其是要扫描的对象比较多的时候 </li>
+<li>会造成内存碎片(会导致明明有内存空间,但是由于不连续,申请稍微大一些的对象无法做到)。</li>
+</ul>
+<p>Full GC 是发生在老年代的垃圾收集动作，所采用的是标记-清除算法。<br>现实的生活中，老年代的人通常会比新生代的人”早死”。堆内存中的老年代(Old)不同于这个，老年代里面的对象几乎个个都是在 Survivor 区域中熬过来的，它们是不会那么容易就 “死掉” 了的。因此，Full GC 发生的次数不会有 Minor GC 那么频繁，并且做一次 Full GC 要比进行一次 Minor GC 的时间更长。</p>
+<h5 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h5><p>如果jvm使用了coping算法，一开始就会将可用内存分为两块，from域和to域， 每次只是使用from域，to域则空闲着。当from域内存不够了，开始执行GC操作，这个时候，会把from域存活的对象拷贝到to域,然后直接把from域进行内存清理。</p>
+<p>优点:在存活对象不多的情况下，性能高，能解决内存碎片。<br>缺点: 会造成一部分的内存浪费。不过可以根据实际情况，将内存块大小比例适当调整；如果存活对象的数量比较大，或者，对象存活率较高时就要进行较多的复制操作，coping的性能会变得很差。</p>
+<h5 id="标记压缩算法"><a href="#标记压缩算法" class="headerlink" title="标记压缩算法"></a>标记压缩算法</h5><p>标记清除算法和标记压缩算法非常相同，但是标记压缩算法在标记清除算法之上解决内存碎片化。</p>
+<p>任意顺序 : 即不考虑原先对象的排列顺序，也不考虑对象之间的引用关系，随意移动对象；<br>线性顺序 : 考虑对象的引用关系，例如a对象引用了b对象，则尽可能将a和b移动到一块；<br>滑动顺序 : 按照对象原来在堆中的顺序滑动到堆的一端。</p>
+<p>优点:解决内存碎片问题，缺点压缩阶段，由于移动了可用对象，需要去更新引用。</p>
 
     </div>
 
@@ -510,7 +530,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java虚拟机的内存模型（持续更新）"><span class="nav-number">1.</span> <span class="nav-text">java虚拟机的内存模型（持续更新）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAM内存区域"><span class="nav-number">2.</span> <span class="nav-text">JAM内存区域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆"><span class="nav-number">2.1.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">2.2.</span> <span class="nav-text">虚拟机栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地方法栈"><span class="nav-number">2.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法区-永久带"><span class="nav-number">2.4.</span> <span class="nav-text">方法区/永久带</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序计数器"><span class="nav-number">2.5.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java8元空间"><span class="nav-number">2.6.</span> <span class="nav-text">java8元空间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jvm运行时内存"><span class="nav-number">3.</span> <span class="nav-text">jvm运行时内存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆-1"><span class="nav-number">3.1.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新生代"><span class="nav-number">3.2.</span> <span class="nav-text">新生代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#老年代"><span class="nav-number">3.3.</span> <span class="nav-text">老年代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#永久代"><span class="nav-number">3.4.</span> <span class="nav-text">永久代</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java四种引用类型"><span class="nav-number">4.</span> <span class="nav-text">java四种引用类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java虚拟机内存模型"><span class="nav-number">1.</span> <span class="nav-text">java虚拟机内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆"><span class="nav-number">1.1.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法区"><span class="nav-number">1.4.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时常量池"><span class="nav-number">1.5.</span> <span class="nav-text">运行时常量池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接内存"><span class="nav-number">1.6.</span> <span class="nav-text">直接内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.7.</span> <span class="nav-text">程序计数器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收机制算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾回收机制算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾回收机制"><span class="nav-number">2.1.</span> <span class="nav-text">垃圾回收机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#finalize方法"><span class="nav-number">2.2.</span> <span class="nav-text">finalize方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断对象是否存活"><span class="nav-number">2.3.</span> <span class="nav-text">判断对象是否存活</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#引用计数法"><span class="nav-number">2.3.1.</span> <span class="nav-text">引用计数法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#搜索根算法"><span class="nav-number">2.3.2.</span> <span class="nav-text">搜索根算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#java四种引用类型"><span class="nav-number">2.3.3.</span> <span class="nav-text">java四种引用类型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分代算法"><span class="nav-number">2.4.</span> <span class="nav-text">分代算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#堆-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#新生代"><span class="nav-number">2.4.2.</span> <span class="nav-text">新生代</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#老年代"><span class="nav-number">2.4.3.</span> <span class="nav-text">老年代</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾回收机制策略"><span class="nav-number">2.5.</span> <span class="nav-text">垃圾回收机制策略</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#标记清除算法"><span class="nav-number">2.5.1.</span> <span class="nav-text">标记清除算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复制算法"><span class="nav-number">2.5.2.</span> <span class="nav-text">复制算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#标记压缩算法"><span class="nav-number">2.5.3.</span> <span class="nav-text">标记压缩算法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
