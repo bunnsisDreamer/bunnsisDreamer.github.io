@@ -57,19 +57,17 @@
   };
 </script>
 
-  <meta name="description" content="首先是靓仔的MVC首先要搞懂MVC分别是啥Controller 负责接收并处理，最终把处理结果响应客户端。Model ：处理据图业务逻辑 产生模型数据。View；负责把模型数据展示给用户。  其次是Huny的JVM">
+  <meta name="description" content="java虚拟机的内存模型（持续更新）内存模型里面分为方法区（Method Area）、堆（Heap）、虚拟机栈（VM Stack）、本地方法堆（Native Method Stack）、程序计数器（Program Counter Register）、执行引擎、本地库接口、本地方法库。JAM内存区域堆堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。堆里面存放的数据是我们">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第十周周会分享（可恶）">
+<meta property="og:title" content="java的jvm（持续更新）">
 <meta property="og:url" content="https://bunnsisdreamer.github.io/2019/11/16/第十周周会分享（可恶）/index.html">
 <meta property="og:site_name" content="金清老贼的博客">
-<meta property="og:description" content="首先是靓仔的MVC首先要搞懂MVC分别是啥Controller 负责接收并处理，最终把处理结果响应客户端。Model ：处理据图业务逻辑 产生模型数据。View；负责把模型数据展示给用户。  其次是Huny的JVM">
+<meta property="og:description" content="java虚拟机的内存模型（持续更新）内存模型里面分为方法区（Method Area）、堆（Heap）、虚拟机栈（VM Stack）、本地方法堆（Native Method Stack）、程序计数器（Program Counter Register）、执行引擎、本地库接口、本地方法库。JAM内存区域堆堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。堆里面存放的数据是我们">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://bunnsisdreamer.github.io/2019/11/16/第十周周会分享（可恶）/imgs%5CSpringMVC1.png">
-<meta property="og:updated_time" content="2019-11-16T13:10:08.564Z">
+<meta property="og:updated_time" content="2019-11-30T05:26:42.861Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第十周周会分享（可恶）">
-<meta name="twitter:description" content="首先是靓仔的MVC首先要搞懂MVC分别是啥Controller 负责接收并处理，最终把处理结果响应客户端。Model ：处理据图业务逻辑 产生模型数据。View；负责把模型数据展示给用户。  其次是Huny的JVM">
-<meta name="twitter:image" content="https://bunnsisdreamer.github.io/2019/11/16/第十周周会分享（可恶）/imgs%5CSpringMVC1.png">
+<meta name="twitter:title" content="java的jvm（持续更新）">
+<meta name="twitter:description" content="java虚拟机的内存模型（持续更新）内存模型里面分为方法区（Method Area）、堆（Heap）、虚拟机栈（VM Stack）、本地方法堆（Native Method Stack）、程序计数器（Program Counter Register）、执行引擎、本地库接口、本地方法库。JAM内存区域堆堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。堆里面存放的数据是我们">
   <link rel="canonical" href="https://bunnsisdreamer.github.io/2019/11/16/第十周周会分享（可恶）/">
 
 
@@ -84,7 +82,7 @@
   };
 </script>
 
-  <title>第十周周会分享（可恶） | 金清老贼的博客</title>
+  <title>java的jvm（持续更新） | 金清老贼的博客</title>
   
 
 
@@ -262,7 +260,7 @@
       <meta itemprop="name" content="金清老贼的博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">第十周周会分享（可恶）
+        <h1 class="post-title" itemprop="name headline">java的jvm（持续更新）
 
           
         </h1>
@@ -278,11 +276,19 @@
                 
               
 
-              <time title="创建时间：2019-11-16 19:18:58 / 修改时间：21:10:08" itemprop="dateCreated datePublished" datetime="2019-11-16T19:18:58+08:00">2019-11-16</time>
+              <time title="创建时间：2019-11-16 19:18:58" itemprop="dateCreated datePublished" datetime="2019-11-16T19:18:58+08:00">2019-11-16</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-30 13:26:42" itemprop="dateModified" datetime="2019-11-30T13:26:42+08:00">2019-11-30</time>
+              </span>
             
           
 
@@ -305,9 +311,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="首先是靓仔的MVC"><a href="#首先是靓仔的MVC" class="headerlink" title="首先是靓仔的MVC"></a>首先是靓仔的MVC</h3><p>首先要搞懂MVC分别是啥<br>Controller 负责接收并处理，最终把处理结果响应客户端。<br>Model ：处理据图业务逻辑 产生模型数据。<br>View；负责把模型数据展示给用户。</p>
-<p><img src="imgs%5CSpringMVC1.png" alt="SpringMVC-1"></p>
-<h3 id="其次是Huny的JVM"><a href="#其次是Huny的JVM" class="headerlink" title="其次是Huny的JVM"></a>其次是Huny的JVM</h3>
+        <h3 id="java虚拟机的内存模型（持续更新）"><a href="#java虚拟机的内存模型（持续更新）" class="headerlink" title="java虚拟机的内存模型（持续更新）"></a>java虚拟机的内存模型（持续更新）</h3><p>内存模型里面分为方法区（Method Area）、堆（Heap）、虚拟机栈（VM Stack）、本地方法堆（Native Method Stack）、程序计数器（Program Counter Register）、执行引擎、本地库接口、本地方法库。</p><h3 id="JAM内存区域"><a href="#JAM内存区域" class="headerlink" title="JAM内存区域"></a>JAM内存区域</h3><h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><p>堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。堆里面存放的数据是我们当前对象的实例。也就是说我们所有对象、数组都需要在这个堆内存里面进行空间的申请和保存。这块内存也是我们在垃圾收集里面主要的清理的一个区域。所以说也可以说上面gc堆。从内存回收的角度也会有新生代···<br>可以通过-Xmx和-Xms来控制当前的虚拟机内存的大小，如果说堆内存被占满了，程序没有办法申请空间再去分配对象什么的，会爆出OutOfMemoryError异常。</p><a id="more"></a>
+
+<h4 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h4><p>虚拟机栈是线程私有的，也是和线程生命周期相同，虚拟机栈里面是描述java方法执行的内存模型，我们每个方法在执行的时候，都会创建栈帧。栈帧里面所进行存储（结构）：局部变量表、操作数栈、动态链接和方法出口。<br>局部变量就是编译期间的基本数据类型的或者是对象的引用（指的是当前对象数据在堆里面的地址）如果虚拟机栈里面内存里面没有办法去申请内存保存更多数据（譬如递归会有栈溢出）。<br>操作数栈和局部变量区一样，操作数栈也是被组织成一个以字长为单位的数组。但是和前者不同的是，它不是通过索引来访问，而是通过标准的栈操作——压栈和出栈—来访问的。<br>动态连接 : 虚拟机运行的时候,运行时常量池会保存大量的符号引用，这些符号引用可以看成是每个方法的间接引用。<br>方法的返回分为两种情况：<br>一种是正常退出，退出后会根据方法的定义来决定是否要传返回值给上层的调用者。<br>一种是异常导致的方法结束，这种情况是不会传返回值给上层的调用方法。<br>不过无论是那种方式的方法结束，在退出当前方法时都会跳转到当前方法被调用的位置。<br>如果方法是正常退出的，则调用者的PC计数器的值就可以作为返回地址；如果是因为异常退出的，则是需要通过异常处理表来确定。</p>
+<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>类似于虚拟机栈，区别是虚拟机栈里面保存的是跟我们java系统里面所运行的方法类提供服务的。而我们本地方法栈是为虚拟机去使用当前的一些本地方法去用的。就是一些Native方法。（并不是特别关心）</p>
+<h4 id="方法区-永久带"><a href="#方法区-永久带" class="headerlink" title="方法区/永久带"></a>方法区/永久带</h4><p>类似于堆、它也是线程共享的。主要用于存储当前对于虚拟机加载关于类、常量、静态变量或者是一些即时编译后的数据。如果方法区保存数据到临界值了，无法储存了也会说内存溢出。方法区里面有一个运行常量池（Runtime Constant Pool）。在加载java程序的时候，关于类的一些版本，类里面的一些成员变量、方法、接口、一些描述类的信息都会在这里面。还有存放在编译期间的自变量和符号引用。</p>
+<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>占的内存最小，执行当前字节码行号的记录器。java在多线程，线程轮流切换到时候。一个cpu执行一条线程的指令。譬如执行12345切换。另一个切换123.我们可以通过程序计数器帮我们实现恢复到之前切换走的位置。是线程私有的，用来看线程自己的一个执行的位置，每个线程都有程序计数器，每个线程都有自己独立的计数器，所有线程之间都是互不影响的。</p>
+<h4 id="java8元空间"><a href="#java8元空间" class="headerlink" title="java8元空间"></a>java8元空间</h4><p>java8没有永久代。和永久代类似，都是对jvm规范。最大区别是原空间在本地内存，不在虚拟机。<br>1.字符串在永久代中，现实使用钟易出现问题，用于永久代内存经常不够或发生内润泄露，爆出异常。<br>2.类的方法的信息等比较难以确定其大小，因此对于永久代的大小指定比较困难，太小用以出现永久代溢出，太大用以导致老年代溢出。<br>3.永久代会为GC带来不必要的复杂度，并且回收效率偏低。</p>
+<h3 id="jvm运行时内存"><a href="#jvm运行时内存" class="headerlink" title="jvm运行时内存"></a>jvm运行时内存</h3><h4 id="堆-1"><a href="#堆-1" class="headerlink" title="堆"></a>堆</h4><p>根据Java虚拟机规范的规定，Java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可，就像我们的磁盘空间一样。在实现时，既可以实现成固定大小的，也可以是可扩展的，不过当前主流的虚拟机都是按照可扩展来实现的（通过-Xmx和-Xms控制）。<br>如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。<br>堆大小 = 新生代 + 老年代。其中，堆的大小可以通过参数 –Xms、-Xmx 来指定。<br>默认的，新生代 ( Young ) 与老年代 ( Old ) 的比例的值为 1:2( 该值可以通过参数 –XX:NewRatio来指定 )，<br>即：新生代 ( Young ) = 1/3 的堆空间大小。老年代 ( Old ) = 2/3 的堆空间大小。</p>
+<h4 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h4><p>程序新创建的对象都是从新生代分配内存，新生代由Eden Space和两块相同大小的Survivor Space(通常又称S0和S1或From和To)构成。<br>可通过-Xmn参数来指定新生代的大小；也可以通过-XX:SurvivorRation来调整Eden Space及SurvivorSpace的大小。<br>1、新生代的初始值NewSize默认为1M，最大值需要设置，可以通过参数-XX:NewSize和-XX:MaxNewSize或-Xmn进行设置；<br>2、为老年代与新生代的大小比值，默认为2：1；<br>3、SurvivorRatio为新生代中Eden和Survivor的大小比值，默认为8：1<br>    Edem : from : to = 8 :1 : 1<br>    可以通过参数-XX:SurvivorRatio 来设定 )，即： Eden = 8/10 的新生代空间大小，from = to = 1/10 的新生代空间大小。<br>JVM 每次只会使用 Eden 和其中的一块 Survivor 区域来为对象服务，所以无论什么时候，总是有一块Survivor 区域是空闲着的。<br>新生代实际可用的内存空间为 9/10 ( 即90% )的新生代空间。</p>
+<h4 id="老年代"><a href="#老年代" class="headerlink" title="老年代"></a>老年代</h4><p>用于存放经过多次新生代GC仍然存活的对象，例如缓存对象，新建的对象也有可能直接进入老年代，主要有两种情况：</p>
+<p>1、大对象，可通过启动参数设置-XX:PretenureSizeThreshold=1024(单位为字节，默认为0)来代表超过多大时就不在新生代分配，而是直接在老年代分配。<br>2、大的数组对象，且数组中无引用外部对象。</p>
+<p>老年代所占的内存大小为-Xmx对应的值减去-Xmn对应的值。<br>如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。</p>
+<h4 id="永久代"><a href="#永久代" class="headerlink" title="永久代"></a>永久代</h4><h3 id="java四种引用类型"><a href="#java四种引用类型" class="headerlink" title="java四种引用类型"></a>java四种引用类型</h3><table>
+<thead>
+<tr>
+<th>引用类型</th>
+<th>-</th>
+<th>用途</th>
+<th>被回收时间</th>
+<th>生存时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>强引用</td>
+<td>-</td>
+<td>对象的一般状态</td>
+<td>从来不会</td>
+<td>JVM停止运行时终止</td>
+</tr>
+<tr>
+<td>软引用</td>
+<td>-</td>
+<td>对象缓存</td>
+<td>内存不足</td>
+<td>内存不足时停止</td>
+</tr>
+<tr>
+<td>弱引用</td>
+<td>-</td>
+<td>对象缓存</td>
+<td>垃圾回收</td>
+<td>GC后停止</td>
+</tr>
+<tr>
+<td>虚引用</td>
+<td>-</td>
+<td>不知道</td>
+<td>不知道</td>
+<td>不知道</td>
+</tr>
+</tbody></table>
+<p>### </p>
+
     </div>
 
     
@@ -332,6 +388,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/11/30/java的jvm的虚拟机栈/" rel="prev" title="java的jvm的虚拟机栈">
+                  java的jvm的虚拟机栈 <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -391,7 +451,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -450,7 +510,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先是靓仔的MVC"><span class="nav-number">1.</span> <span class="nav-text">首先是靓仔的MVC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其次是Huny的JVM"><span class="nav-number">2.</span> <span class="nav-text">其次是Huny的JVM</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java虚拟机的内存模型（持续更新）"><span class="nav-number">1.</span> <span class="nav-text">java虚拟机的内存模型（持续更新）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAM内存区域"><span class="nav-number">2.</span> <span class="nav-text">JAM内存区域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆"><span class="nav-number">2.1.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">2.2.</span> <span class="nav-text">虚拟机栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地方法栈"><span class="nav-number">2.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法区-永久带"><span class="nav-number">2.4.</span> <span class="nav-text">方法区/永久带</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序计数器"><span class="nav-number">2.5.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java8元空间"><span class="nav-number">2.6.</span> <span class="nav-text">java8元空间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jvm运行时内存"><span class="nav-number">3.</span> <span class="nav-text">jvm运行时内存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆-1"><span class="nav-number">3.1.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新生代"><span class="nav-number">3.2.</span> <span class="nav-text">新生代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#老年代"><span class="nav-number">3.3.</span> <span class="nav-text">老年代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#永久代"><span class="nav-number">3.4.</span> <span class="nav-text">永久代</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java四种引用类型"><span class="nav-number">4.</span> <span class="nav-text">java四种引用类型</span></a></li></ol></div>
             
 
           </div>

@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/11/16/第十周周会分享（可恶）/">
+    <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/11/30/java的jvm的虚拟机栈/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王 增益">
@@ -257,7 +257,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/11/16/第十周周会分享（可恶）/" class="post-title-link" itemprop="url">第十周周会分享（可恶）</a>
+            <a href="/2019/11/30/java的jvm的虚拟机栈/" class="post-title-link" itemprop="url">java的jvm的虚拟机栈</a>
           
         </h1>
 
@@ -272,7 +272,7 @@
                 
               
 
-              <time title="创建时间：2019-11-16 19:18:58 / 修改时间：21:10:08" itemprop="dateCreated datePublished" datetime="2019-11-16T19:18:58+08:00">2019-11-16</time>
+              <time title="创建时间：2019-11-30 13:09:08 / 修改时间：13:19:20" itemprop="dateCreated datePublished" datetime="2019-11-30T13:09:08+08:00">2019-11-30</time>
             </span>
           
             
@@ -291,9 +291,107 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="首先是靓仔的MVC"><a href="#首先是靓仔的MVC" class="headerlink" title="首先是靓仔的MVC"></a>首先是靓仔的MVC</h3><p>首先要搞懂MVC分别是啥<br>Controller 负责接收并处理，最终把处理结果响应客户端。<br>Model ：处理据图业务逻辑 产生模型数据。<br>View；负责把模型数据展示给用户。</p>
-<p><img src="imgs%5CSpringMVC1.png" alt="SpringMVC-1"></p>
-<h3 id="其次是Huny的JVM"><a href="#其次是Huny的JVM" class="headerlink" title="其次是Huny的JVM"></a>其次是Huny的JVM</h3>
+          <h3 id="一个小例子"><a href="#一个小例子" class="headerlink" title="一个小例子"></a>一个小例子</h3><h3 id="论字符串编译之间的区别"><a href="#论字符串编译之间的区别" class="headerlink" title="论字符串编译之间的区别"></a>论字符串编译之间的区别</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Demo &#123;</span><br><span class="line">    String s1 = &quot;abc123&quot;;</span><br><span class="line">    String s2 = &quot;abc&quot;;</span><br><span class="line">    String s3 = &quot;abc&quot; + &quot;123&quot;;</span><br><span class="line">    String s4 = s2 + &quot;123&quot;;</span><br><span class="line">    String s5 = new String(&quot;abc&quot;);</span><br><span class="line">    String s6 = s5 + &quot;123&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/11/30/java的jvm的虚拟机栈/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/11/16/第十周周会分享（可恶）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王 增益">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1566049148502.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金清老贼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/16/第十周周会分享（可恶）/" class="post-title-link" itemprop="url">java的jvm（持续更新）</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-16 19:18:58" itemprop="dateCreated datePublished" datetime="2019-11-16T19:18:58+08:00">2019-11-16</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-30 13:26:42" itemprop="dateModified" datetime="2019-11-30T13:26:42+08:00">2019-11-30</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="java虚拟机的内存模型（持续更新）"><a href="#java虚拟机的内存模型（持续更新）" class="headerlink" title="java虚拟机的内存模型（持续更新）"></a>java虚拟机的内存模型（持续更新）</h3><p>内存模型里面分为方法区（Method Area）、堆（Heap）、虚拟机栈（VM Stack）、本地方法堆（Native Method Stack）、程序计数器（Program Counter Register）、执行引擎、本地库接口、本地方法库。</p><h3 id="JAM内存区域"><a href="#JAM内存区域" class="headerlink" title="JAM内存区域"></a>JAM内存区域</h3><h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><p>堆是java虚拟机里面管理内存最大的一块，它是我们在所有线程所共享的一个内存。堆里面存放的数据是我们当前对象的实例。也就是说我们所有对象、数组都需要在这个堆内存里面进行空间的申请和保存。这块内存也是我们在垃圾收集里面主要的清理的一个区域。所以说也可以说上面gc堆。从内存回收的角度也会有新生代···<br>可以通过-Xmx和-Xms来控制当前的虚拟机内存的大小，如果说堆内存被占满了，程序没有办法申请空间再去分配对象什么的，会爆出OutOfMemoryError异常。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/11/16/第十周周会分享（可恶）/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -410,6 +508,88 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/11/01/子类获取父类的父类的属性和方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王 增益">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1566049148502.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="金清老贼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/01/子类获取父类的父类的属性和方法/" class="post-title-link" itemprop="url">子类获取父类的父类的属性和方法</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-01 21:41:27" itemprop="dateCreated datePublished" datetime="2019-11-01T21:41:27+08:00">2019-11-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-16 19:20:09" itemprop="dateModified" datetime="2019-11-16T19:20:09+08:00">2019-11-16</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/11/01/java子类获取父类的父类的属性和方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -468,88 +648,6 @@
             </div>
           
           <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/11/01/子类获取父类的父类的属性和方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王 增益">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/1566049148502.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金清老贼的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/11/01/子类获取父类的父类的属性和方法/" class="post-title-link" itemprop="url">子类获取父类的父类的属性和方法</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-01 21:41:27" itemprop="dateCreated datePublished" datetime="2019-11-01T21:41:27+08:00">2019-11-01</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-16 19:20:09" itemprop="dateModified" datetime="2019-11-16T19:20:09+08:00">2019-11-16</time>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
         
       
     </div>
@@ -1015,97 +1113,6 @@
   </article>
 
     
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bunnsisdreamer.github.io/2019/09/21/java虚拟机的类加载/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王 增益">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/1566049148502.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="金清老贼的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/21/java虚拟机的类加载/" class="post-title-link" itemprop="url">java虚拟机的类加载</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-21 00:40:57" itemprop="dateCreated datePublished" datetime="2019-09-21T00:40:57+08:00">2019-09-21</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-16 19:20:08" itemprop="dateModified" datetime="2019-11-16T19:20:08+08:00">2019-11-16</time>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="虚拟机的类加载机制"><a href="#虚拟机的类加载机制" class="headerlink" title="虚拟机的类加载机制"></a>虚拟机的类加载机制</h3><p>虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。</p><p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。</p><p>当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初始化。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/21/java虚拟机的类加载/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1146,7 +1153,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
