@@ -283,7 +283,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="给个链接，刚刚发的一个帖子"><a href="#给个链接，刚刚发的一个帖子" class="headerlink" title="给个链接，刚刚发的一个帖子"></a>给个链接，刚刚发的一个帖子</h1><p><a href="https://bbs.hupu.com/35301578.html" target="_blank" rel="noopener">女朋友是大二前端开发者，准备选购macbook pro求jrs推荐</a>.</p><p>永久不删除</p><p>我真的就是觉得很普普通通的一个文章，结果被我自吴亦凡和虎扑因《新说唱》的互怼而加入jrs的阵营以来，对虎扑感觉有着前所未有的失望。一个个人都不知道算成什么样子。虽然说是直男的论坛一起玩玩发发帖子都还挺好。也会有一些莫名其妙的抖机灵。和以前的贴吧/天涯论坛一样，会有很多精品的帖子出现。但是总的学历水平估计还是挺低的。就目前看来可能平均学历并没有多高。我也参与过投票，某种月经帖，jrs的学历。密密麻麻，从小学开始，初中······一直到院士。投票总是院士最多，也就随随便便打趣便是了。</p>
+          <h1 id="给个链接，刚刚发的一个帖子"><a href="#给个链接，刚刚发的一个帖子" class="headerlink" title="给个链接，刚刚发的一个帖子"></a>给个链接，刚刚发的一个帖子</h1><p><a href="https://bbs.hupu.com/35301578.html" target="_blank" rel="noopener">女朋友是大二前端开发者，准备选购macbook pro求jrs推荐</a>.</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -374,7 +374,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="嗯嗯，确实准备考研了"><a href="#嗯嗯，确实准备考研了" class="headerlink" title="嗯嗯，确实准备考研了"></a>嗯嗯，确实准备考研了</h1><p>如题</p><p>之前断更了，很长时间。打算接下来的一些时间给自己的博客完善一下。都是很多的大佬提供的方法，我们只是使用它，又不是什么难事。</p><p>本文只是说我准备考研了。断更也并不是说我不是在读书，再摸鱼啊什么的。其实只是没有记录而已。</p><p>做了两个项目，感觉自己学的太少了。</p><p>姚秋鸿总是说我别想着他，他学的少。其实还不是比我多。我对自己没什么信心。都说就业难我也知道，但是工作室总是有人才出现，讲真的人才不管在哪里都是人才。譬如隔壁工作室的哪个浙江人，一看就是兢兢业业学技术的料。也没什么七情六欲。那个人在我寝室对面，他们同寝室的称之为电竞荒漠。但是其实人家肚子里东西是个海洋。</p>
+          <h1 id="嗯嗯，确实准备考研了"><a href="#嗯嗯，确实准备考研了" class="headerlink" title="嗯嗯，确实准备考研了"></a>嗯嗯，确实准备考研了</h1><p>如题</p><p>之前断更了，很长时间。打算接下来的一些时间给自己的博客完善一下。都是很多的大佬提供的方法，我们只是使用它，又不是什么难事。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -738,7 +738,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <a id="more"></a><p>问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。<br>我寻思了一下有三种。</p><h3 id="1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。"><a href="#1-在父类里面建立super-爷类的方法。然后子类重写的同时里面super-也是调用自己父类的方法可以实现。" class="headerlink" title="1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。"></a>1.在父类里面建立super.爷类的方法。然后子类重写的同时里面super.也是调用自己父类的方法可以实现。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Grandfather&#123;</span><br><span class="line">    String a = &quot;爷爷&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Father extends Grandfather&#123;</span><br><span class="line">    String a = &quot;爸爸&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Son extends Father&#123;</span><br><span class="line">    String a = &quot;孙子&quot;;</span><br><span class="line"></span><br><span class="line">    String getGrandfatherName()&#123;</span><br><span class="line">        return super.getGrandfatherName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <a id="more"></a><p>问题源自于招新培训的时候，我听课时候的灵光一现。如果是中国人继承于人类，但是浙江人又继承于中国人，怎么才能获得父类的父类的方法。<br>我寻思了一下有三种。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1189,8 +1189,6 @@
         
           
         
-          
-        
         <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
         
@@ -1348,6 +1346,5 @@
 
 
   
-
 </body>
 </html>

@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初">
+  <meta name="description" content="虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java虚拟机的类加载">
 <meta property="og:url" content="https://bunnsisdreamer.github.io/2019/09/21/java虚拟机的类加载/index.html">
 <meta property="og:site_name" content="金清老贼的博客">
-<meta property="og:description" content="虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初">
+<meta property="og:description" content="虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-05-09T11:15:31.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java虚拟机的类加载">
-<meta name="twitter:description" content="虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初">
+<meta name="twitter:description" content="虚拟机的类加载机制虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。">
   <link rel="canonical" href="https://bunnsisdreamer.github.io/2019/09/21/java虚拟机的类加载/">
 
 
@@ -301,9 +301,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="虚拟机的类加载机制"><a href="#虚拟机的类加载机制" class="headerlink" title="虚拟机的类加载机制"></a>虚拟机的类加载机制</h3><p>虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。</p><p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。</p><p>当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初始化。</p><a id="more"></a>
-
-
+        <h3 id="虚拟机的类加载机制"><a href="#虚拟机的类加载机制" class="headerlink" title="虚拟机的类加载机制"></a>虚拟机的类加载机制</h3><p>虚拟机把描述类的数据从Class文件加载到内存，对数据校验，转换解析和初始化形成虚拟机可以直接使用的Java类型。</p><a id="more"></a>
+<p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验 证、准备、解析、初始化、使用和卸载七个阶段。其中验证、准备和解析三个部分统称为连接。</p>
+<p>当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始 化三步来实现这个类进行初始化。</p>
 <h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>加载就是虚拟机查找.class，并创建一个java.lang.Class的对象，将类的.class文件中的二进制数据读入内存，放在运行时区域的方法区内。然后在堆中创建 java.lang.Class 对象，用来封装类在方法区的数据结构。 </p>
 <p>（1）Java虚拟机将.class文件读入内存，并为之创建一个Class对象。 （2）任何类被使用时系统都会为其创建一个且仅有一个Class对象。<br>（3）这个Class对象描述了这个类创建出来的对象的所有信息</p>
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接包括验证、准备以及解析三个阶段。<br>（1）验证阶段。主要的目的是确保被加载的类（.class文件的字节流）满足Java虚拟机规范，不 会造成安全错误。 （2）准备阶段。负责为类的静态成员分配内存，并设置默认初始值。 （3）解析阶段。将类的二进制数据中的符号引用替换为直接引用。 </p>
@@ -386,9 +386,6 @@
 
           </div>
           
-    
-    <div class="comments" id="gitalk-container"></div>
-  
 
         </div>
           
@@ -438,8 +435,6 @@
       <div class="site-state-item site-state-tags">
         
         
-        
-          
         
           
         
@@ -625,25 +620,6 @@
   
   <script src="/js/scrollspy.js?v=7.3.0"></script><script src="/js/post-details.js?v=7.3.0"></script>
 
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: '9846730fad395e384b60',
-      clientSecret: '0a12ac29d217aaa7932442da3f476c682db536fb',
-      repo: 'bunnsisDreamerer',
-      owner: 'bunnsisDreamer',
-      admin: ['bunnsisDreamer'],
-      id: 'c35e458e22a29088863c531a76e8dbb1',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-</script>
 
 </body>
 </html>

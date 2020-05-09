@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="首先要知道什么是反射。Java的反射指的就是在程序的运行的时候，对于任何一个的类，这个类的所有的方法和属性都可以知道。同样的对象作为类的实例，也可以对它所有的方法和属性加以调用。这种就叫做反射那么反射有什么用呢在运行时判断任意一个对象所属的类；在运行时构造任意一个类的对象； 在运行时判断任意一个类所具有的成员变量和方法； 在运行时调用任意一个对象的方法；">
+  <meta name="description" content="首先要知道什么是反射。Java的反射指的就是在程序的运行的时候，对于任何一个的类，这个类的所有的方法和属性都可以知道。同样的对象作为类的实例，也可以对它所有的方法和属性加以调用。这种就叫做反射">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java学习的反射）">
 <meta property="og:url" content="https://bunnsisdreamer.github.io/2019/09/20/java学习的反射（终究会来的学习记录）/index.html">
 <meta property="og:site_name" content="金清老贼的博客">
-<meta property="og:description" content="首先要知道什么是反射。Java的反射指的就是在程序的运行的时候，对于任何一个的类，这个类的所有的方法和属性都可以知道。同样的对象作为类的实例，也可以对它所有的方法和属性加以调用。这种就叫做反射那么反射有什么用呢在运行时判断任意一个对象所属的类；在运行时构造任意一个类的对象； 在运行时判断任意一个类所具有的成员变量和方法； 在运行时调用任意一个对象的方法；">
+<meta property="og:description" content="首先要知道什么是反射。Java的反射指的就是在程序的运行的时候，对于任何一个的类，这个类的所有的方法和属性都可以知道。同样的对象作为类的实例，也可以对它所有的方法和属性加以调用。这种就叫做反射">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-05-09T11:15:14.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java学习的反射）">
-<meta name="twitter:description" content="首先要知道什么是反射。Java的反射指的就是在程序的运行的时候，对于任何一个的类，这个类的所有的方法和属性都可以知道。同样的对象作为类的实例，也可以对它所有的方法和属性加以调用。这种就叫做反射那么反射有什么用呢在运行时判断任意一个对象所属的类；在运行时构造任意一个类的对象； 在运行时判断任意一个类所具有的成员变量和方法； 在运行时调用任意一个对象的方法；">
+<meta name="twitter:description" content="首先要知道什么是反射。Java的反射指的就是在程序的运行的时候，对于任何一个的类，这个类的所有的方法和属性都可以知道。同样的对象作为类的实例，也可以对它所有的方法和属性加以调用。这种就叫做反射">
   <link rel="canonical" href="https://bunnsisdreamer.github.io/2019/09/20/java学习的反射（终究会来的学习记录）/">
 
 
@@ -301,8 +301,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>首先要知道什么是反射。<br>Java的反射指的就是在程序的运行的时候，对于任何一个的类，这个类的所有的方法和属性都可以知道。同样的对象作为类的实例，也可以对它所有的方法和属性加以调用。这种就叫做反射</p><h3 id="那么反射有什么用呢"><a href="#那么反射有什么用呢" class="headerlink" title="那么反射有什么用呢"></a>那么反射有什么用呢</h3><p>在运行时判断任意一个对象所属的类；<br>在运行时构造任意一个类的对象； 在运行时判断任意一个类所具有的成员变量和方法； 在运行时调用任意一个对象的方法；</p><a id="more"></a>
-
+        <p>首先要知道什么是反射。<br>Java的反射指的就是在程序的运行的时候，对于任何一个的类，这个类的所有的方法和属性都可以知道。同样的对象作为类的实例，也可以对它所有的方法和属性加以调用。这种就叫做反射</p><a id="more"></a>
+<h3 id="那么反射有什么用呢"><a href="#那么反射有什么用呢" class="headerlink" title="那么反射有什么用呢"></a>那么反射有什么用呢</h3><p>在运行时判断任意一个对象所属的类；<br>在运行时构造任意一个类的对象； 在运行时判断任意一个类所具有的成员变量和方法； 在运行时调用任意一个对象的方法；</p>
 <h3 id="java的反射api"><a href="#java的反射api" class="headerlink" title="java的反射api"></a>java的反射api</h3><p>Class类：就单纯代表一个类<br>Field类：代表类的成员变量<br>Method类：代表类的方法<br>Constructor类：代表类的构造方法</p>
 <h3 id="首先是Class类"><a href="#首先是Class类" class="headerlink" title="首先是Class类"></a>首先是Class类</h3><p>Class类没有共有的构造方法，在被new或者被类加载器加载的时候，每个.class都有一个相应的Class对象。就是编译的时候的里面的.class文件里面必有一个代表这个类的所有信息的Class对象</p>
 <h3 id="java中的Class三种获取方式（这里是全部抄的）"><a href="#java中的Class三种获取方式（这里是全部抄的）" class="headerlink" title="java中的Class三种获取方式（这里是全部抄的）"></a>java中的Class三种获取方式（这里是全部抄的）</h3><p>利用对象调用getClass()方法获取该对象的Class实例； 使用Class类的静态方法forName()，用类的名字获取一个Class实例 ；<br>运用.class的方式来获取Class实例，对于基本数据类型的封装类，还可以采用.TYPE来获取相对应的 基本数据类型的Class实例；</p>
@@ -384,9 +384,6 @@
 
           </div>
           
-    
-    <div class="comments" id="gitalk-container"></div>
-  
 
         </div>
           
@@ -436,8 +433,6 @@
       <div class="site-state-item site-state-tags">
         
         
-        
-          
         
           
         
@@ -623,25 +618,6 @@
   
   <script src="/js/scrollspy.js?v=7.3.0"></script><script src="/js/post-details.js?v=7.3.0"></script>
 
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: '9846730fad395e384b60',
-      clientSecret: '0a12ac29d217aaa7932442da3f476c682db536fb',
-      repo: 'bunnsisDreamerer',
-      owner: 'bunnsisDreamer',
-      admin: ['bunnsisDreamer'],
-      id: '6fb766b566247b404b18043ffd2415f8',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-</script>
 
 </body>
 </html>
