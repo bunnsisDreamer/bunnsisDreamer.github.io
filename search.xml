@@ -3,7 +3,10 @@
   <entry>
     <title><![CDATA[freshStartBlog]]></title>
     <url>%2F2023%2F02%2F28%2FfreshStartBlog%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[重新开始更新博客以及不定期push自己的成果]]></content>
+      <tags>
+        <tag>Graduate CS student</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[TigerLikeDuck]]></title>
